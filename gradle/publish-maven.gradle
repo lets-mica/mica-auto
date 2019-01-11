@@ -1,0 +1,93 @@
+apply plugin: 'signing'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+jar {
+    into("META-INF/maven/$project.group/$project.name") {
+        from { generatePomFileForMavenJavaPublication }
+        rename ".*", "pom.xml"
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        failOnError false
+        links "http://docs.oracle.com/javase/8/docs/api"
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        pom.version = "${VERSION}"
+        pom.artifactId = "$project.name"
+        pom.groupId = "$project.group"
+
+        signing {
+            sign configurations.archives
+        }
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+        repository(url: pom.version.endsWith('SNAPSHOT')
+            ? REPOSITORY_URL_SNAPSHOT : REPOSITORY_URL_RELEASE) {
+            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+        pom.project {
+            name 'mica-auto'
+            packaging 'jar'
+            description 'An enhanced toolkit of Spring cloud to simplify development.'
+            url 'https://git.dreamlu.net/dream-vip/mica'
+
+            scm {
+                connection 'scm:github.com/lets-mica/mica-auto.git'
+                developerConnection 'scm:git@github.com/lets-mica/mica-auto.git'
+                url 'https://github.com/lets-mica/mica-auto.git'
+            }
+            licenses {
+                license {
+                    name 'GNU LESSER GENERAL PUBLIC LICENSE'
+                    url 'https://www.gnu.org/licenses/lgpl-3.0.en.html'
+                }
+            }
+            developers {
+                developer {
+                    name 'Dreamlu'
+                    email 'qq596392912@gmail.com'
+                }
+            }
+        }
+    }
+}
+
+def getRepositoryUsername() {
+    return hasProperty('NEXUS_OSS_USER_NAME') ? NEXUS_OSS_USER_NAME : ""
+}
+
+def getRepositoryPassword() {
+    return hasProperty('NEXUS_OSS_PASS_WORD') ? NEXUS_OSS_PASS_WORD : ""
+}
