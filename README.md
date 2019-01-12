@@ -1,7 +1,7 @@
 # mica-auto 代码自动生成
 `mica-auto` 是 `Spring cloud` 微服务框架 `Mica` 中的一个基础组件，用来生成 `Spring boot` 的一些基础配置。 
 
-想要了解跟多可加入【如梦技术】QQ群：479710041
+想要了解更多可加入【如梦技术】QQ群：479710041
 
 ## 功能
 1. 生成 `spring.factories`
