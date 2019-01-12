@@ -14,6 +14,7 @@
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
   <version>0.0.1</version>
+  <scope>provided</scope>
 </dependency>
 ```
 
