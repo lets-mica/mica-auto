@@ -46,7 +46,7 @@ uploadArchives {
     repositories.mavenDeployer {
         pom.version = "${VERSION}"
         pom.artifactId = "$project.name"
-        pom.groupId = "$project.group"
+        pom.groupId = "${GROUPID}"
 
         signing {
             sign configurations.archives
@@ -61,7 +61,7 @@ uploadArchives {
             name 'mica-auto'
             packaging 'jar'
             description 'An enhanced toolkit of Spring cloud to simplify development.'
-            url 'https://git.dreamlu.net/dream-vip/mica'
+            url 'https://github.com/lets-mica/mica-auto'
 
             scm {
                 connection 'scm:github.com/lets-mica/mica-auto.git'
