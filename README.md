@@ -37,6 +37,7 @@ LGPL是GPL的一个为主要为类库使用设计的开源协议。和GPL要求�
 ## 用户权益
 * 允许以引入不改源码的形式免费用于学习、毕设、公司项目、私活等。
 * 特殊情况修改代码，但仍然想闭源需经过作者同意。
+* 参考请注明：参考 mica-atuo：https://github.com/lets-mica/mica-auto
 
 ## 参考
 Google Auto: https://github.com/google/auto
