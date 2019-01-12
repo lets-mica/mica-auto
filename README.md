@@ -19,12 +19,12 @@
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu.mica:mica-auto:0.0.1")
+annotationProcessor("net.dreamlu:mica-auto:0.0.1")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu.mica:mica-auto:0.0.1"
+compileOnly "net.dreamlu:mica-auto:0.0.1"
 ```
 
 ## 开源协议
