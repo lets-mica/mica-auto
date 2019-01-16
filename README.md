@@ -28,6 +28,9 @@ annotationProcessor("net.dreamlu:mica-auto:0.0.1")
 compileOnly "net.dreamlu:mica-auto:0.0.1"
 ```
 
+## 问题
+1. 无法支撑组合注解。
+
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）
 
