@@ -115,4 +115,11 @@ public class MultiSetMap<K, V> {
 		map.clear();
 	}
 
+	/**
+	 * isEmpty
+	 * @return isEmpty
+	 */
+	public boolean isEmpty() {
+		return map.isEmpty();
+	}
 }

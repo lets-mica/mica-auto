@@ -148,6 +148,9 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	}
 
 	private void generateFactoriesFiles() {
+		if (factories.isEmpty()) {
+			return;
+		}
 		Filer filer = processingEnv.getFiler();
 		try {
 			// 1. spring.factories
