@@ -1,6 +1,8 @@
 # mica-auto 代码自动生成
 `mica-auto` 是 `Spring cloud` 微服务框架 `Mica` 中的一个基础组件，用来生成 `Spring boot` 的一些基础配置。 
 
+[版本更新记录](CHANGELOG.md)
+
 想要了解更多可加入【如梦技术】QQ群：479710041
 
 ## 功能
@@ -28,8 +30,11 @@ annotationProcessor("net.dreamlu:mica-auto:0.0.1")
 compileOnly "net.dreamlu:mica-auto:0.0.1"
 ```
 
+## 原理
+扫描 `@Configuration`，自动生成相应的配置。
+
 ## 问题
-1. 无法支撑组合注解。
+1. 无法支持组合注解。对于组合注解里有 `@Configuration`，建议在类上再添加一个 `@Configuration`。
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）

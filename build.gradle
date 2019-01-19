@@ -1,9 +1,10 @@
-apply plugin: "java"
+apply plugin: "java-library"
 apply plugin: "maven"
 apply from: "${rootProject.projectDir}/gradle/publish-maven.gradle"
 
 ext {
     javaVersion = JavaVersion.VERSION_1_8
+    springBootVersion = "2.1.2.RELEASE"
     lombokVersion = "1.18.4"
     googleAutoServiceVersion = "1.0-rc4"
 }
@@ -12,10 +13,12 @@ group = GROUPID
 version = VERSION
 
 dependencies {
-    compileOnly("org.projectlombok:lombok:$lombokVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
-    compileOnly("com.google.auto.service:auto-service:$googleAutoServiceVersion")
-    annotationProcessor("com.google.auto.service:auto-service:$googleAutoServiceVersion")
+    api "org.springframework.boot:spring-boot-configuration-processor:$springBootVersion"
+    api "org.springframework.boot:spring-boot-autoconfigure-processor:$springBootVersion"
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    compileOnly "com.google.auto.service:auto-service:$googleAutoServiceVersion"
+    annotationProcessor "com.google.auto.service:auto-service:$googleAutoServiceVersion"
 }
 
 repositories {

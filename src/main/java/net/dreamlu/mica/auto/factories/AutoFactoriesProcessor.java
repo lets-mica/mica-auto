@@ -19,15 +19,12 @@ package net.dreamlu.mica.auto.factories;
 import com.google.auto.service.AutoService;
 import net.dreamlu.mica.auto.common.AbstractMicaProcessor;
 import net.dreamlu.mica.auto.common.MultiSetMap;
-import net.dreamlu.mica.auto.common.Sets;
 
-import javax.annotation.processing.Filer;
-import javax.annotation.processing.Processor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedOptions;
-import javax.lang.model.element.AnnotationMirror;
+import javax.annotation.processing.*;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 import java.io.IOException;
@@ -43,17 +40,28 @@ import java.util.Set;
  * @author L.cm
  */
 @AutoService(Processor.class)
+@SupportedAnnotationTypes({
+	AutoFactoriesProcessor.CONFIGURE_ANNOTATION,
+	AutoFactoriesProcessor.FEIGN_CLIENT_ANNOTATION
+})
 @SupportedOptions("debug")
 public class AutoFactoriesProcessor extends AbstractMicaProcessor {
-
 	/**
-	 * 处理的注解
+	 * 处理的注解 @Configuration
 	 */
-	private static final String CONFIGURE_ANNOTATION = "org.springframework.context.annotation.Configuration";
+	protected static final String CONFIGURE_ANNOTATION = "org.springframework.context.annotation.Configuration";
+	/**
+	 * 处理的注解 @FeignClient
+	 */
+	protected static final String FEIGN_CLIENT_ANNOTATION = "org.springframework.cloud.openfeign.FeignClient";
 	/**
 	 * spring boot 自动配置注解
 	 */
 	private static final String AUTO_CONFIGURE_KEY = "org.springframework.boot.autoconfigure.EnableAutoConfiguration";
+	/**
+	 * Feign 自动配置
+	 */
+	private static final String FEIGN_AUTO_CONFIGURE_KEY = "net.dreamlu.mica.feign.MicaFeignAutoConfiguration";
 	/**
 	 * The location to look for factories.
 	 * <p>Can be present in multiple JAR files.
@@ -69,11 +77,6 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	private MultiSetMap<String, String> factories = new MultiSetMap<>();
 
 	@Override
-	public Set<String> getSupportedAnnotationTypes() {
-		return Sets.ofImmutableSet(CONFIGURE_ANNOTATION);
-	}
-
-	@Override
 	protected boolean processImpl(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 		if (roundEnv.processingOver()) {
 			generateFactoriesFiles();
@@ -84,25 +87,63 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	}
 
 	private void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-		Set<? extends Element> elements = roundEnv.getRootElements();
 		// 日志 打印信息 gradlew build --info
 		log(annotations.toString());
-		log(elements.toString());
+		Elements elementUtils = processingEnv.getElementUtils();
 
-		for (Element type : elements) {
-			if (!(type instanceof TypeElement)) {
-				continue;
+		// 处理 @Configuration 注解
+		TypeElement configureAnnotation = elementUtils.getTypeElement(CONFIGURE_ANNOTATION);
+		if (configureAnnotation != null) {
+			Set<? extends Element> configureElements = roundEnv.getElementsAnnotatedWith(configureAnnotation);
+			log("@Configuration list: " + configureElements.toString());
+			// Configuration Elements
+			for (Element type : configureElements) {
+				if (!(type instanceof TypeElement)) {
+					continue;
+				}
+				TypeElement providerImplementer = (TypeElement) type;
+				String factoryName = providerImplementer.getQualifiedName().toString();
+				ElementKind elementKind = providerImplementer.getKind();
+				// 组合注解
+				if (ElementKind.ANNOTATION_TYPE == elementKind) {
+					continue;
+				}
+				if (factories.containsVal(factoryName)) {
+					continue;
+				}
+				log("读取到新配置 spring.factories factoryName：" + factoryName);
+				factories.put(AUTO_CONFIGURE_KEY,  factoryName);
 			}
-			if (!isAnnotatedWithConfig(type)) {
-				continue;
+		}
+
+		// 处理 @FeignClient 注解
+		TypeElement feignClientAnnotation = elementUtils.getTypeElement(FEIGN_CLIENT_ANNOTATION);
+		if (feignClientAnnotation != null) {
+			Set<? extends Element>  feignClientElements = roundEnv.getElementsAnnotatedWith(feignClientAnnotation);
+			log("@FeignClient list: " + feignClientElements);
+			// Feign Client Elements
+			for (Element type : feignClientElements) {
+				if (!(type instanceof TypeElement)) {
+					continue;
+				}
+				TypeElement providerImplementer = (TypeElement) type;
+				String factoryName = providerImplementer.getQualifiedName().toString();
+				ElementKind elementKind = providerImplementer.getKind();
+				// 组合注解
+				if (ElementKind.ANNOTATION_TYPE == elementKind) {
+					continue;
+				}
+				// Feign Client 只处理 接口
+				if (ElementKind.INTERFACE != elementKind) {
+					fatalError("@FeignClient class " + factoryName + " 不是接口。");
+					continue;
+				}
+				if (factories.containsVal(factoryName)) {
+					continue;
+				}
+				log("读取到新配置 spring.factories factoryName：" + factoryName);
+				factories.put(FEIGN_AUTO_CONFIGURE_KEY,  factoryName);
 			}
-			TypeElement providerImplementer = (TypeElement) type;
-			String factoryName = providerImplementer.getQualifiedName().toString();
-			if (factories.containsVal(factoryName)) {
-				continue;
-			}
-			log("读取到新配置 spring.factories factoryName：" + factoryName);
-			factories.put(AUTO_CONFIGURE_KEY,  factoryName);
 		}
 	}
 
@@ -123,16 +164,4 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		}
 	}
 
-	private boolean isAnnotatedWithConfig(Element type) {
-		for (AnnotationMirror annotation : type.getAnnotationMirrors()) {
-			if (isConfigAnnotation(annotation)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean isConfigAnnotation(AnnotationMirror annotation) {
-		return CONFIGURE_ANNOTATION.equals(annotation.getAnnotationType().toString());
-	}
 }
