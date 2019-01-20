@@ -21,6 +21,7 @@ import net.dreamlu.mica.auto.common.AbstractMicaProcessor;
 import net.dreamlu.mica.auto.common.MultiSetMap;
 
 import javax.annotation.processing.*;
+import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
@@ -32,7 +33,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * spring boot 自动配置处理器
@@ -40,10 +43,7 @@ import java.util.Set;
  * @author L.cm
  */
 @AutoService(Processor.class)
-@SupportedAnnotationTypes({
-	AutoFactoriesProcessor.CONFIGURE_ANNOTATION,
-	AutoFactoriesProcessor.FEIGN_CLIENT_ANNOTATION
-})
+@SupportedAnnotationTypes("*")
 @SupportedOptions("debug")
 public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	/**
@@ -89,58 +89,48 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	private void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 		// 日志 打印信息 gradlew build --info
 		log(annotations.toString());
-		Elements elementUtils = processingEnv.getElementUtils();
+		Set<? extends Element> elementSet = roundEnv.getRootElements();
+		log("All Element set: " + elementSet.toString());
 
-		// 处理 @Configuration 注解
-		TypeElement configureAnnotation = elementUtils.getTypeElement(CONFIGURE_ANNOTATION);
-		if (configureAnnotation != null) {
-			Set<? extends Element> configureElements = roundEnv.getElementsAnnotatedWith(configureAnnotation);
-			log("@Configuration list: " + configureElements.toString());
-			// Configuration Elements
-			for (Element type : configureElements) {
-				if (!(type instanceof TypeElement)) {
-					continue;
-				}
-				TypeElement providerImplementer = (TypeElement) type;
-				String factoryName = providerImplementer.getQualifiedName().toString();
-				ElementKind elementKind = providerImplementer.getKind();
-				// 组合注解
-				if (ElementKind.ANNOTATION_TYPE == elementKind) {
-					continue;
-				}
-				if (factories.containsVal(factoryName)) {
-					continue;
-				}
-				log("读取到新配置 spring.factories factoryName：" + factoryName);
-				factories.put(AUTO_CONFIGURE_KEY,  factoryName);
-			}
+		// 过滤 TypeElement
+		Set<TypeElement> typeElementSet = elementSet.stream()
+			.filter(this::isClassOrInterface)
+			.filter(e -> e instanceof TypeElement)
+			.map(e -> (TypeElement) e)
+			.collect(Collectors.toSet());
+		// 如果为空直接跳出
+		if (typeElementSet.isEmpty()) {
+			log("Annotations elementSet is isEmpty");
+			return;
 		}
 
-		// 处理 @FeignClient 注解
-		TypeElement feignClientAnnotation = elementUtils.getTypeElement(FEIGN_CLIENT_ANNOTATION);
-		if (feignClientAnnotation != null) {
-			Set<? extends Element>  feignClientElements = roundEnv.getElementsAnnotatedWith(feignClientAnnotation);
-			log("@FeignClient list: " + feignClientElements);
-			// Feign Client Elements
-			for (Element type : feignClientElements) {
-				if (!(type instanceof TypeElement)) {
-					continue;
-				}
-				TypeElement providerImplementer = (TypeElement) type;
-				String factoryName = providerImplementer.getQualifiedName().toString();
-				ElementKind elementKind = providerImplementer.getKind();
-				// 组合注解
-				if (ElementKind.ANNOTATION_TYPE == elementKind) {
-					continue;
-				}
-				// Feign Client 只处理 接口
-				if (ElementKind.INTERFACE != elementKind) {
-					fatalError("@FeignClient class " + factoryName + " 不是接口。");
-					continue;
-				}
+		Elements elementUtils = processingEnv.getElementUtils();
+		for (TypeElement typeElement : typeElementSet) {
+			if (isAnnotation(elementUtils, typeElement, CONFIGURE_ANNOTATION)) {
+				log("Found @Configuration Element: " + typeElement.toString());
+
+				String factoryName = typeElement.getQualifiedName().toString();
 				if (factories.containsVal(factoryName)) {
 					continue;
 				}
+
+				log("读取到新配置 spring.factories factoryName：" + factoryName);
+				factories.put(AUTO_CONFIGURE_KEY,  factoryName);
+			} else if (isAnnotation(elementUtils, typeElement, FEIGN_CLIENT_ANNOTATION)) {
+				log("Found @FeignClient list: " + typeElement.toString());
+
+				ElementKind elementKind = typeElement.getKind();
+				// Feign Client 只处理 接口
+				if (ElementKind.INTERFACE != elementKind) {
+					fatalError("@FeignClient class " + typeElement.toString() + " 不是接口。");
+					continue;
+				}
+
+				String factoryName = typeElement.getQualifiedName().toString();
+				if (factories.containsVal(factoryName)) {
+					continue;
+				}
+
 				log("读取到新配置 spring.factories factoryName：" + factoryName);
 				factories.put(FEIGN_AUTO_CONFIGURE_KEY,  factoryName);
 			}
@@ -167,4 +157,31 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		}
 	}
 
+	private boolean isClassOrInterface(Element e) {
+		ElementKind kind = e.getKind();
+		return kind == ElementKind.CLASS || kind == ElementKind.INTERFACE;
+	}
+
+	private boolean isAnnotation(Elements elementUtils, Element e, String annotationFullName) {
+		List<? extends AnnotationMirror> annotationList = elementUtils.getAllAnnotationMirrors(e);
+		for (AnnotationMirror annotation : annotationList) {
+			// 如果是对于的注解
+			if (isAnnotation(annotationFullName, annotation)) {
+				return true;
+			}
+			// 处理组合注解
+			Element element = annotation.getAnnotationType().asElement();
+			// 如果是 java 元注解，继续循环
+			if (element.toString().startsWith("java.lang")) {
+				continue;
+			}
+			// 递归处理 组合注解
+			return isAnnotation(elementUtils, element, annotationFullName);
+		}
+		return false;
+	}
+
+	private boolean isAnnotation(String annotationFullName, AnnotationMirror annotation) {
+		return annotationFullName.equals(annotation.getAnnotationType().toString());
+	}
 }

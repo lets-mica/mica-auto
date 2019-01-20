@@ -8,6 +8,7 @@
 ## 功能
 1. 生成 `spring.factories`
 2. 生成 `spring-devtools.properties`
+3. 生成 `FeignClient` 到 `spring.factories` 中，供 `mica` 中完成 `Feign` 自动化配置。
 
 ## 使用
 ### maven
@@ -15,26 +16,25 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:0.0.2")
+annotationProcessor("net.dreamlu:mica-auto:0.0.3")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:0.0.2"
+compileOnly "net.dreamlu:mica-auto:0.0.3"
 ```
 
 ## 原理
 扫描 `@Configuration`，自动生成相应的配置。
 
-## 问题
-1. 无法支持组合注解。对于组合注解里有 `@Configuration`，建议在类上再添加一个 `@Configuration`。
+`注意：` v0.0.3 开始支持组合注解。
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）
