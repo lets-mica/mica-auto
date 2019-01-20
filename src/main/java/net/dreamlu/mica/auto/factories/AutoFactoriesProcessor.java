@@ -49,11 +49,11 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	/**
 	 * 处理的注解 @Configuration
 	 */
-	protected static final String CONFIGURE_ANNOTATION = "org.springframework.context.annotation.Configuration";
+	private static final String CONFIGURE_ANNOTATION = "org.springframework.context.annotation.Configuration";
 	/**
 	 * 处理的注解 @FeignClient
 	 */
-	protected static final String FEIGN_CLIENT_ANNOTATION = "org.springframework.cloud.openfeign.FeignClient";
+	private static final String FEIGN_CLIENT_ANNOTATION = "org.springframework.cloud.openfeign.FeignClient";
 	/**
 	 * spring boot 自动配置注解
 	 */
