@@ -16,25 +16,25 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>0.0.3</version>
+  <version>1.0.0</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:0.0.3")
+annotationProcessor("net.dreamlu:mica-auto:1.0.0")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:0.0.3"
+compileOnly "net.dreamlu:mica-auto:1.0.0"
 ```
 
 ## 原理
 扫描 `@Configuration`，自动生成相应的配置。
 
-`注意：` v0.0.3 开始支持组合注解。
+`注意：` v1.0.0 已经支持组合注解。
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）

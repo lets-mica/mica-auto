@@ -68,7 +68,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	 */
 	private static final String FACTORIES_RESOURCE_LOCATION = "META-INF/spring.factories";
 	/**
-	 * devtools，有 Configuration 注解的 jar 一般需要 devtools 配置文件，目前不支持
+	 * devtools，有 Configuration 注解的 jar 一般需要 devtools 配置文件
 	 */
 	private static final String DEVTOOLS_RESOURCE_LOCATION = "META-INF/spring-devtools.properties";
 	/**
@@ -87,7 +87,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	}
 
 	private void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-		// 日志 打印信息 gradlew build --info
+		// 日志 打印信息 gradle build --debug
 		log(annotations.toString());
 		Set<? extends Element> elementSet = roundEnv.getRootElements();
 		log("All Element set: " + elementSet.toString());
@@ -176,7 +176,9 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 				continue;
 			}
 			// 递归处理 组合注解
-			return isAnnotation(elementUtils, element, annotationFullName);
+			if (isAnnotation(elementUtils, element, annotationFullName)) {
+				return true;
+			}
 		}
 		return false;
 	}
