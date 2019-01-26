@@ -75,6 +75,16 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	 * 数据承载
 	 */
 	private MultiSetMap<String, String> factories = new MultiSetMap<>();
+	/**
+	 * 元素辅助类
+	 */
+	private Elements elementUtils;
+
+	@Override
+	public synchronized void init(ProcessingEnvironment processingEnv) {
+		super.init(processingEnv);
+		elementUtils = processingEnv.getElementUtils();
+	}
 
 	@Override
 	protected boolean processImpl(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -83,7 +93,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		} else {
 			processAnnotations(annotations, roundEnv);
 		}
-		return true;
+		return false;
 	}
 
 	private void processAnnotations(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -104,7 +114,6 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 			return;
 		}
 
-		Elements elementUtils = processingEnv.getElementUtils();
 		for (TypeElement typeElement : typeElementSet) {
 			if (isAnnotation(elementUtils, typeElement, CONFIGURE_ANNOTATION)) {
 				log("Found @Configuration Element: " + typeElement.toString());
@@ -117,12 +126,12 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 				log("读取到新配置 spring.factories factoryName：" + factoryName);
 				factories.put(AUTO_CONFIGURE_KEY,  factoryName);
 			} else if (isAnnotation(elementUtils, typeElement, FEIGN_CLIENT_ANNOTATION)) {
-				log("Found @FeignClient list: " + typeElement.toString());
+				log("Found @FeignClient Element: " + typeElement.toString());
 
 				ElementKind elementKind = typeElement.getKind();
 				// Feign Client 只处理 接口
 				if (ElementKind.INTERFACE != elementKind) {
-					fatalError("@FeignClient class " + typeElement.toString() + " 不是接口。");
+					fatalError("@FeignClient Element " + typeElement.toString() + " 不是接口。");
 					continue;
 				}
 

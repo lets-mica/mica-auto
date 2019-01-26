@@ -1,7 +1,7 @@
 # mica-auto 代码自动生成
 [![mica-auto Maven](https://img.shields.io/maven-central/v/net.dreamlu/mica-auto.svg?style=flat-square)](https://mvnrepository.com/artifact/net.dreamlu/mica-bom)
 
-`mica-auto` 是 `Spring cloud` 微服务框架 `Mica` 中的一个基础组件，用来生成 `Spring boot` 的一些基础配置。 
+`mica-auto` 是 `Spring cloud` 微服务框架 `Mica` 中的一个基础组件，用来生成 `Spring boot starter` 的一些基础配置。 
 
 [版本更新记录](CHANGELOG.md)
 
@@ -23,25 +23,23 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:1.0.0")
+annotationProcessor("net.dreamlu:mica-auto:1.0.1")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:1.0.0"
+compileOnly "net.dreamlu:mica-auto:1.0.1"
 ```
 
 ## 原理
-扫描 `@Configuration`，自动生成相应的配置。
-
-`注意：` v1.0.0 已经支持组合注解。
+扫描 `@Configuration`，自动生成相应的配置，支持组合注解。
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）

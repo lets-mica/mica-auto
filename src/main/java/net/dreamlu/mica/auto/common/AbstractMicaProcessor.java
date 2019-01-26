@@ -51,7 +51,7 @@ public abstract class AbstractMicaProcessor extends AbstractProcessor {
 			return processImpl(annotations, roundEnv);
 		} catch (Exception e) {
 			fatalError(e);
-			return true;
+			return false;
 		}
 	}
 
