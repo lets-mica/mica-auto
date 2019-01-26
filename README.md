@@ -5,9 +5,9 @@
 
 [版本更新记录](CHANGELOG.md)
 
-想要了解更多可加入【如梦技术】QQ群：479710041
-
 ## 推荐
+加入【如梦技术】QQ群：`479710041`，了解更多。
+
 `mica 微服务框架`：https://github.com/lets-mica/mica
 
 ## 功能
@@ -16,6 +16,8 @@
 3. 生成 `FeignClient` 到 `spring.factories` 中，供 `mica` 中完成 `Feign` 自动化配置。
 
 ## 使用
+`注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。
+
 ### maven
 ```xml
 <dependency>

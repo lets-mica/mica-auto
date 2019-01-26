@@ -1,18 +1,11 @@
 apply plugin: 'signing'
 apply plugin: 'maven-publish'
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-}
-
 jar {
-    into("META-INF/maven/$project.group/$project.name") {
-        from { generatePomFileForMavenJavaPublication }
-        rename ".*", "pom.xml"
+    afterEvaluate {
+        manifest {
+            attributes 'Implementation-Version': version
+        }
     }
 }
 
@@ -42,45 +35,58 @@ artifacts {
     archives javadocJar
 }
 
-uploadArchives {
-    repositories.mavenDeployer {
-        pom.version = "${VERSION}"
-        pom.artifactId = "$project.name"
-        pom.groupId = "${GROUPID}"
+tasks.whenTaskAdded { task ->
+    if (task.name.contains('signMavenJavaPublication')) {
+        task.enabled = new File(project.property('signing.secretKeyRingFile') as String).isFile()
+    }
+}
 
-        signing {
-            sign configurations.archives
-        }
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-        repository(url: pom.version.endsWith('SNAPSHOT')
-            ? REPOSITORY_URL_SNAPSHOT : REPOSITORY_URL_RELEASE) {
-            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
-        }
-
-        pom.project {
-            name = 'mica-auto'
-            packaging = 'jar'
-            description = 'An enhanced toolkit of Spring cloud to simplify development.'
-            url = 'https://github.com/lets-mica/mica-auto'
-
-            scm {
-                connection = 'scm:github.com/lets-mica/mica-auto.git'
-                developerConnection = 'scm:git@github.com/lets-mica/mica-auto.git'
-                url = 'https://github.com/lets-mica/mica-auto.git'
+publishing {
+    repositories {
+        maven {
+            url = version.endsWith('SNAPSHOT') ? REPOSITORY_URL_SNAPSHOT : REPOSITORY_URL_RELEASE
+            credentials {
+                username getRepositoryUsername()
+                password getRepositoryPassword()
             }
-            licenses {
-                license {
-                    name = 'GNU LESSER GENERAL PUBLIC LICENSE'
-                    url = 'https://www.gnu.org/licenses/lgpl-3.0.en.html'
+        }
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                name = 'mica-auto'
+                packaging = 'jar'
+                description = 'An enhanced toolkit of Spring cloud to simplify development.'
+                url = 'https://github.com/lets-mica/mica-auto'
+
+                scm {
+                    connection = 'scm:github.com/lets-mica/mica-auto.git'
+                    developerConnection = 'scm:git@github.com/lets-mica/mica-auto.git'
+                    url = 'https://github.com/lets-mica/mica-auto.git'
+                }
+                licenses {
+                    license {
+                        name = 'GNU LESSER GENERAL PUBLIC LICENSE'
+                        url = 'https://www.gnu.org/licenses/lgpl-3.0.en.html'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'Dreamlu'
+                        email = 'qq596392912@gmail.com'
+                    }
                 }
             }
-            developers {
-                developer {
-                    name = 'Dreamlu'
-                    email = 'qq596392912@gmail.com'
-                }
-            }
         }
+    }
+
+    signing {
+        sign publishing.publications.mavenJava
     }
 }
 
