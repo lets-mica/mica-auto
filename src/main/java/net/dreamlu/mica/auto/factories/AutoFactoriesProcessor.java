@@ -47,9 +47,9 @@ import java.util.stream.Collectors;
 @SupportedOptions("debug")
 public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	/**
-	 * 处理的注解 @Configuration
+	 * 处理的注解 @Component
 	 */
-	private static final String CONFIGURE_ANNOTATION = "org.springframework.context.annotation.Configuration";
+	private static final String COMPONENT_ANNOTATION = "org.springframework.stereotype.Component";
 	/**
 	 * 处理的注解 @FeignClient
 	 */
@@ -115,8 +115,8 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		}
 
 		for (TypeElement typeElement : typeElementSet) {
-			if (isAnnotation(elementUtils, typeElement, CONFIGURE_ANNOTATION)) {
-				log("Found @Configuration Element: " + typeElement.toString());
+			if (isAnnotation(elementUtils, typeElement, COMPONENT_ANNOTATION)) {
+				log("Found @Component Element: " + typeElement.toString());
 
 				String factoryName = typeElement.getQualifiedName().toString();
 				if (factories.containsVal(factoryName)) {

@@ -2,8 +2,11 @@
 
 ## 发行版本
 ## [1.0.1] - 2019-01-27
+### 调整
+- 扫描注解由 `@Configuration` 调整为 `@Component`，支持 `@Service`、`@Controller` 等组合有 `@Component` 的注解。
+
 ### 修复
-- ✅调整 process 返回 false，让其他注解处理器执行。
+- ✅调整 process 返回 false，支持其他注解处理器。
 
 ## [1.0.0] - 2019-01-21
 ### 修复

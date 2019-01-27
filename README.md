@@ -10,6 +10,12 @@
 
 `mica 微服务框架`：https://github.com/lets-mica/mica
 
+## 使用场景
+主要是用来避免 Spring boot 主项目包同 `子项目`或者`子模块` 包不一致，避免包扫描不到的问题。 
+
+- 自定义 `spring boot starter`。
+- 多模块项目中的`子项目`（不建议主项目添加 `mica-auto`）。
+
 ## 功能
 1. 生成 `spring.factories`
 2. 生成 `spring-devtools.properties`
@@ -39,7 +45,7 @@ compileOnly "net.dreamlu:mica-auto:1.0.1"
 ```
 
 ## 原理
-扫描 `@Configuration`，自动生成相应的配置，支持组合注解。
+扫描 `@Component`，自动生成相应的配置，支持组合注解。
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）
