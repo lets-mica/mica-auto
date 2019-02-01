@@ -19,7 +19,7 @@
 ## 功能
 1. 生成 `spring.factories`
 2. 生成 `spring-devtools.properties`
-3. 生成 `FeignClient` 到 `spring.factories` 中，供 `mica` 中完成 `Feign` 自动化配置。
+3. 生成 `FeignClient` 到 `spring.factories` 中，供 `mica-pro` 中完成 `Feign` 自动化配置。
 
 ## 使用
 `注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。
