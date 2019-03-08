@@ -64,3 +64,8 @@ Google Auto: https://github.com/google/auto
 
 Spring 5 - spring-context-indexer：https://github.com/spring-projects/spring-framework/tree/master/spring-context-indexer
 
+## 微信公众号
+
+![如梦技术](docs/dreamlu-weixin.jpg)
+
+精彩内容每日推荐！
