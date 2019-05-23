@@ -1,6 +1,12 @@
 # 变更记录
 
 ## 发行版本
+## [1.1.0] - 2019-05-23
+### 添加
+- 添加 `@AutoContextInitializer` 支持 `org.springframework.context.ApplicationContextInitializer`。
+- 添加 `@AutoListener` 支持 `org.springframework.context.ApplicationListener`。
+- 添加 `@AutoFailureAnalyzer` 支持 `org.springframework.boot.diagnostics.FailureAnalyzer`。
+
 ## [1.0.1] - 2019-01-27
 ### 调整
 - 扫描注解由 `@Configuration` 调整为 `@Component`，支持 `@Service`、`@Controller` 等组合有 `@Component` 的注解。

@@ -18,6 +18,7 @@ package net.dreamlu.mica.auto.factories;
 
 import com.google.auto.service.AutoService;
 import net.dreamlu.mica.auto.common.AbstractMicaProcessor;
+import net.dreamlu.mica.auto.common.BootAutoType;
 import net.dreamlu.mica.auto.common.MultiSetMap;
 
 import javax.annotation.processing.*;
@@ -47,17 +48,9 @@ import java.util.stream.Collectors;
 @SupportedOptions("debug")
 public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	/**
-	 * 处理的注解 @Component
-	 */
-	private static final String COMPONENT_ANNOTATION = "org.springframework.stereotype.Component";
-	/**
 	 * 处理的注解 @FeignClient
 	 */
 	private static final String FEIGN_CLIENT_ANNOTATION = "org.springframework.cloud.openfeign.FeignClient";
-	/**
-	 * spring boot 自动配置注解
-	 */
-	private static final String AUTO_CONFIGURE_KEY = "org.springframework.boot.autoconfigure.EnableAutoConfiguration";
 	/**
 	 * Feign 自动配置
 	 */
@@ -115,17 +108,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		}
 
 		for (TypeElement typeElement : typeElementSet) {
-			if (isAnnotation(elementUtils, typeElement, COMPONENT_ANNOTATION)) {
-				log("Found @Component Element: " + typeElement.toString());
-
-				String factoryName = typeElement.getQualifiedName().toString();
-				if (factories.containsVal(factoryName)) {
-					continue;
-				}
-
-				log("读取到新配置 spring.factories factoryName：" + factoryName);
-				factories.put(AUTO_CONFIGURE_KEY,  factoryName);
-			} else if (isAnnotation(elementUtils, typeElement, FEIGN_CLIENT_ANNOTATION)) {
+			if (isAnnotation(elementUtils, typeElement, FEIGN_CLIENT_ANNOTATION)) {
 				log("Found @FeignClient Element: " + typeElement.toString());
 
 				ElementKind elementKind = typeElement.getKind();
@@ -142,6 +125,21 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 
 				log("读取到新配置 spring.factories factoryName：" + factoryName);
 				factories.put(FEIGN_AUTO_CONFIGURE_KEY,  factoryName);
+			} else {
+				for (BootAutoType autoType : BootAutoType.values()) {
+					String annotation = autoType.getAnnotation();
+					if (isAnnotation(elementUtils, typeElement, annotation)) {
+						log("Found @" + annotation + " Element: " + typeElement.toString());
+
+						String factoryName = typeElement.getQualifiedName().toString();
+						if (factories.containsVal(factoryName)) {
+							continue;
+						}
+
+						log("读取到新配置 spring.factories factoryName：" + factoryName);
+						factories.put(autoType.getConfigureKey(),  factoryName);
+					}
+				}
 			}
 		}
 	}
