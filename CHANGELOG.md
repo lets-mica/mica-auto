@@ -1,7 +1,7 @@
 # 变更记录
 
 ## 发行版本
-## [1.1.0] - 2019-05-23
+## [1.1.0] - 2019-05-24
 ### 添加
 - 添加 `@AutoContextInitializer` 支持 `org.springframework.context.ApplicationContextInitializer`。
 - 添加 `@AutoListener` 支持 `org.springframework.context.ApplicationListener`。
