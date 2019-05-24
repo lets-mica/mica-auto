@@ -6,6 +6,7 @@
 - 添加 `@AutoContextInitializer` 支持 `org.springframework.context.ApplicationContextInitializer`。
 - 添加 `@AutoListener` 支持 `org.springframework.context.ApplicationListener`。
 - 添加 `@AutoFailureAnalyzer` 支持 `org.springframework.boot.diagnostics.FailureAnalyzer`。
+- 升级依赖版本 `google auto` 到 `1.0-rc5`，`lombok` 到 `1.18.8`，`Spring Boot` 到 `2.1.5.RELEASE`。
 
 ## [1.0.1] - 2019-01-27
 ### 调整
