@@ -6,8 +6,6 @@
 [版本更新记录](CHANGELOG.md)
 
 ## 推荐
-加入【如梦技术】QQ群：`479710041`，了解更多。
-
 `mica 微服务框架`：https://github.com/lets-mica/mica
 
 ## 使用场景
