@@ -18,6 +18,7 @@
 1. 生成 `spring.factories`
 2. 生成 `spring-devtools.properties`
 3. 生成 `FeignClient` 到 `spring.factories` 中，供 `mica-cloud` 中完成 `Feign` 自动化配置。
+4. 生成 java Spi 配置，需要添加 `@AutoService` 注解。
 
 ## 使用
 `注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。
@@ -27,19 +28,19 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:1.1.0")
+annotationProcessor("net.dreamlu:mica-auto:1.2.0")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:1.1.0"
+compileOnly "net.dreamlu:mica-auto:1.2.0"
 ```
 
 ## 原理
