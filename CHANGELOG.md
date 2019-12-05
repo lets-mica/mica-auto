@@ -1,6 +1,11 @@
 # 变更记录
 
 ## 发行版本
+## [1.2.0] - 2019-12-06
+### 添加
+- 添加对 java spi 的支持，并精简代码。
+- lombok、spring boot、google auto 依赖升级。
+
 ## [1.1.0] - 2019-05-24
 ### 添加
 - 添加 `@AutoContextInitializer` 支持 `org.springframework.context.ApplicationContextInitializer`。

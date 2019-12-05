@@ -16,8 +16,8 @@
 
 package net.dreamlu.mica.auto.common;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import net.dreamlu.mica.auto.annotation.AutoContextInitializer;
 import net.dreamlu.mica.auto.annotation.AutoFailureAnalyzer;
 import net.dreamlu.mica.auto.annotation.AutoListener;
@@ -28,7 +28,7 @@ import net.dreamlu.mica.auto.annotation.AutoListener;
  * @author L.cm
  */
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public enum BootAutoType {
 	/**
 	 * 注解处理的类型

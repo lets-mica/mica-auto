@@ -22,7 +22,6 @@ import net.dreamlu.mica.auto.common.BootAutoType;
 import net.dreamlu.mica.auto.common.MultiSetMap;
 
 import javax.annotation.processing.*;
-import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
@@ -34,7 +33,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -162,35 +160,5 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		} catch (IOException | URISyntaxException e) {
 			fatalError(e);
 		}
-	}
-
-	private boolean isClassOrInterface(Element e) {
-		ElementKind kind = e.getKind();
-		return kind == ElementKind.CLASS || kind == ElementKind.INTERFACE;
-	}
-
-	private boolean isAnnotation(Elements elementUtils, Element e, String annotationFullName) {
-		List<? extends AnnotationMirror> annotationList = elementUtils.getAllAnnotationMirrors(e);
-		for (AnnotationMirror annotation : annotationList) {
-			// 如果是对于的注解
-			if (isAnnotation(annotationFullName, annotation)) {
-				return true;
-			}
-			// 处理组合注解
-			Element element = annotation.getAnnotationType().asElement();
-			// 如果是 java 元注解，继续循环
-			if (element.toString().startsWith("java.lang")) {
-				continue;
-			}
-			// 递归处理 组合注解
-			if (isAnnotation(elementUtils, element, annotationFullName)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private boolean isAnnotation(String annotationFullName, AnnotationMirror annotation) {
-		return annotationFullName.equals(annotation.getAnnotationType().toString());
 	}
 }
