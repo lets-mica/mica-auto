@@ -1,6 +1,11 @@
 # 变更记录
 
 ## 发行版本
+## [1.2.1] - 2020-04-09
+### 添加
+- 添加对 spring boot SpringApplicationRunListener 的支持。
+- Spring boot 升级到 `2.2.6.RELEASE`。
+
 ## [1.2.0] - 2019-12-06
 ### 添加
 - 添加对 java spi 的支持，并精简代码。

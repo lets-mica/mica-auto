@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import net.dreamlu.mica.auto.annotation.AutoContextInitializer;
 import net.dreamlu.mica.auto.annotation.AutoFailureAnalyzer;
 import net.dreamlu.mica.auto.annotation.AutoListener;
+import net.dreamlu.mica.auto.annotation.AutoRunListener;
 
 /**
  * 注解类型
@@ -35,6 +36,7 @@ public enum BootAutoType {
 	 */
 	CONTEXT_INITIALIZER(AutoContextInitializer.class.getName(), "org.springframework.context.ApplicationContextInitializer"),
 	LISTENER(AutoListener.class.getName(), "org.springframework.context.ApplicationListener"),
+	RUN_LISTENER(AutoRunListener.class.getName(), "org.springframework.boot.SpringApplicationRunListener"),
 	FAILURE_ANALYZER(AutoFailureAnalyzer.class.getName(), "org.springframework.boot.diagnostics.FailureAnalyzer"),
 	COMPONENT("org.springframework.stereotype.Component", "org.springframework.boot.autoconfigure.EnableAutoConfiguration");
 
