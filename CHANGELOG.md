@@ -4,6 +4,7 @@
 ## [1.2.1] - 2020-04-09
 ### 添加
 - 添加对 spring boot SpringApplicationRunListener 的支持。
+- 添加对 spring boot EnvironmentPostProcessor 的支持。
 - Spring boot 升级到 `2.2.6.RELEASE`。
 
 ## [1.2.0] - 2019-12-06

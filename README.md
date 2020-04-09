@@ -15,10 +15,22 @@
 - 多模块项目中的`子项目`（不建议主项目添加 `mica-auto`）。
 
 ## 功能
-1. 生成 `spring.factories`
+1. 生成 `spring.factories`。
 2. 生成 `spring-devtools.properties`
 3. 生成 `FeignClient` 到 `spring.factories` 中，供 `mica-cloud` 中完成 `Feign` 自动化配置。
 4. 生成 java Spi 配置，需要添加 `@AutoService` 注解。
+
+
+| 注解                    | spring.factories 或 Spi key   |
+| ----------------------- | ----------------------------- |
+| @AutoContextInitializer | ApplicationContextInitializer |
+| @AutoListener           | ApplicationListener           |
+| @AutoRunListener        | SpringApplicationRunListener  |
+| @AutoEnvPostProcessor   | EnvironmentPostProcessor      |
+| @AutoFailureAnalyzer    | FailureAnalyzer               |
+| @Component              | EnableAutoConfiguration       |
+| @AutoService            | java Spi 生成配置             |
+
 
 ## 使用
 `注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。

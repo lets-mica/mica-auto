@@ -18,10 +18,7 @@ package net.dreamlu.mica.auto.common;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.dreamlu.mica.auto.annotation.AutoContextInitializer;
-import net.dreamlu.mica.auto.annotation.AutoFailureAnalyzer;
-import net.dreamlu.mica.auto.annotation.AutoListener;
-import net.dreamlu.mica.auto.annotation.AutoRunListener;
+import net.dreamlu.mica.auto.annotation.*;
 
 /**
  * 注解类型
@@ -32,11 +29,24 @@ import net.dreamlu.mica.auto.annotation.AutoRunListener;
 @RequiredArgsConstructor
 public enum BootAutoType {
 	/**
-	 * 注解处理的类型
+	 * ApplicationContextInitializer 添加到 spring.factories
 	 */
 	CONTEXT_INITIALIZER(AutoContextInitializer.class.getName(), "org.springframework.context.ApplicationContextInitializer"),
+	/**
+	 * ApplicationListener 添加到 spring.factories
+	 */
 	LISTENER(AutoListener.class.getName(), "org.springframework.context.ApplicationListener"),
+	/**
+	 * SpringApplicationRunListener 添加到 spring.factories
+	 */
 	RUN_LISTENER(AutoRunListener.class.getName(), "org.springframework.boot.SpringApplicationRunListener"),
+	/**
+	 * EnvironmentPostProcessor 添加到 spring.factories
+	 */
+	ENV_POST_PROCESSOR(AutoEnvPostProcessor.class.getName(), "org.springframework.boot.env.EnvironmentPostProcessor"),
+	/**
+	 * FailureAnalyzer 添加到 spring.factories
+	 */
 	FAILURE_ANALYZER(AutoFailureAnalyzer.class.getName(), "org.springframework.boot.diagnostics.FailureAnalyzer"),
 	COMPONENT("org.springframework.stereotype.Component", "org.springframework.boot.autoconfigure.EnableAutoConfiguration");
 
