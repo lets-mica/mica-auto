@@ -21,7 +21,7 @@
 4. 生成 java Spi 配置，需要添加 `@AutoService` 注解。
 
 
-| 注解                    | spring.factories 或 Spi key   |
+| 注解                    | spring.factories 或 Spi key    |
 | ----------------------- | ----------------------------- |
 | @AutoContextInitializer | ApplicationContextInitializer |
 | @AutoListener           | ApplicationListener           |
@@ -29,7 +29,8 @@
 | @AutoEnvPostProcessor   | EnvironmentPostProcessor      |
 | @AutoFailureAnalyzer    | FailureAnalyzer               |
 | @Component              | EnableAutoConfiguration       |
-| @AutoService            | java Spi 生成配置             |
+| @AutoIgnore             | 忽略，不生成到 spring.factories  |
+| @AutoService            | java Spi 生成配置               |
 
 
 ## 使用
@@ -40,19 +41,19 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.2</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:1.2.1")
+annotationProcessor("net.dreamlu:mica-auto:1.2.2")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:1.2.1"
+compileOnly "net.dreamlu:mica-auto:1.2.2"
 ```
 
 ## 原理
