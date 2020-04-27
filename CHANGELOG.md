@@ -1,6 +1,10 @@
 # 变更记录
 
 ## 发行版本
+## [1.2.2] - 2020-04-27
+### 添加
+- 添加可用于忽略生成到 spring.factories 的 `@AutoIgnore`。
+
 ## [1.2.1] - 2020-04-09
 ### 添加
 - 添加对 spring boot SpringApplicationRunListener 的支持。

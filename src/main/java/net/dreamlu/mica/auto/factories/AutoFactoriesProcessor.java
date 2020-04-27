@@ -17,6 +17,7 @@
 package net.dreamlu.mica.auto.factories;
 
 import com.google.auto.service.AutoService;
+import net.dreamlu.mica.auto.annotation.AutoIgnore;
 import net.dreamlu.mica.auto.common.AbstractMicaProcessor;
 import net.dreamlu.mica.auto.common.BootAutoType;
 import net.dreamlu.mica.auto.common.MultiSetMap;
@@ -106,7 +107,10 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		}
 
 		for (TypeElement typeElement : typeElementSet) {
-			if (isAnnotation(elementUtils, typeElement, FEIGN_CLIENT_ANNOTATION)) {
+			// ignore @AutoIgnore Element
+			if (isAnnotation(elementUtils, typeElement, AutoIgnore.class.getName())) {
+				log("Found @AutoIgnore annotation，ignore Element: " + typeElement.toString());
+			} else if (isAnnotation(elementUtils, typeElement, FEIGN_CLIENT_ANNOTATION)) {
 				log("Found @FeignClient Element: " + typeElement.toString());
 
 				ElementKind elementKind = typeElement.getKind();
@@ -122,7 +126,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 				}
 
 				log("读取到新配置 spring.factories factoryName：" + factoryName);
-				factories.put(FEIGN_AUTO_CONFIGURE_KEY,  factoryName);
+				factories.put(FEIGN_AUTO_CONFIGURE_KEY, factoryName);
 			} else {
 				for (BootAutoType autoType : BootAutoType.values()) {
 					String annotation = autoType.getAnnotation();
@@ -135,7 +139,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 						}
 
 						log("读取到新配置 spring.factories factoryName：" + factoryName);
-						factories.put(autoType.getConfigureKey(),  factoryName);
+						factories.put(autoType.getConfigureKey(), factoryName);
 					}
 				}
 			}
