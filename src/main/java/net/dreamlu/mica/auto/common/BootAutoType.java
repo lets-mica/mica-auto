@@ -28,6 +28,11 @@ import net.dreamlu.mica.auto.annotation.*;
 @Getter
 @RequiredArgsConstructor
 public enum BootAutoType {
+
+	/**
+	 * Component，组合注解，添加到 spring.factories
+	 */
+	COMPONENT("org.springframework.stereotype.Component", "org.springframework.boot.autoconfigure.EnableAutoConfiguration"),
 	/**
 	 * ApplicationContextInitializer 添加到 spring.factories
 	 */
@@ -48,7 +53,14 @@ public enum BootAutoType {
 	 * FailureAnalyzer 添加到 spring.factories
 	 */
 	FAILURE_ANALYZER(AutoFailureAnalyzer.class.getName(), "org.springframework.boot.diagnostics.FailureAnalyzer"),
-	COMPONENT("org.springframework.stereotype.Component", "org.springframework.boot.autoconfigure.EnableAutoConfiguration");
+	/**
+	 * AutoConfigurationImportFilter spring.factories
+	 */
+	AUTO_CONFIGURATION_IMPORT_FILTER(AutoConfigImportFilter.class.getName(), "org.springframework.boot.autoconfigure.AutoConfigurationImportFilter"),
+	/**
+	 * TemplateAvailabilityProvider 添加到 spring.factories
+	 */
+	TEMPLATE_AVAILABILITY_PROVIDER(AutoTemplateProvider.class.getName(), "org.springframework.boot.autoconfigure.template.TemplateAvailabilityProvider");
 
 	private final String annotation;
 	private final String configureKey;

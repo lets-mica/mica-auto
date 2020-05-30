@@ -28,6 +28,8 @@
 | @AutoRunListener        | SpringApplicationRunListener  |
 | @AutoEnvPostProcessor   | EnvironmentPostProcessor      |
 | @AutoFailureAnalyzer    | FailureAnalyzer               |
+| @AutoConfigImportFilter | AutoConfigurationImportFilter |
+| @AutoTemplateProvider   | TemplateAvailabilityProvider  |
 | @Component              | EnableAutoConfiguration       |
 | @AutoIgnore             | 忽略，不生成到 spring.factories  |
 | @AutoService            | java Spi 生成配置               |
@@ -41,19 +43,19 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>1.2.2</version>
+  <version>1.2.3</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:1.2.2")
+annotationProcessor("net.dreamlu:mica-auto:1.2.3")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:1.2.2"
+compileOnly "net.dreamlu:mica-auto:1.2.3"
 ```
 
 ## 原理
