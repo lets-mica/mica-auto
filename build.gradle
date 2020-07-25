@@ -11,6 +11,12 @@ ext {
 group = GROUPID
 version = VERSION
 
+allprojects {
+    apply plugin: 'java'
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
