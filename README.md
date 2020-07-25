@@ -1,4 +1,6 @@
 # mica-auto 代码自动生成
+[![Java CI](https://github.com/lets-mica/mica-auto/workflows/Java%20CI/badge.svg)](https://github.com/lets-mica/mica-auto/actions)
+![JAVA 8](https://img.shields.io/badge/JDK-1.8+-brightgreen.svg)
 [![mica-auto Maven](https://img.shields.io/maven-central/v/net.dreamlu/mica-auto.svg?style=flat-square)](https://mvnrepository.com/artifact/net.dreamlu/mica-auto)
 
 `mica-auto` 是 `Spring cloud` 微服务框架 `Mica` 中的一个基础组件，用来生成 `Spring boot starter` 的一些基础配置。 
