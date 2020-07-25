@@ -1,6 +1,26 @@
 # 变更记录
 
 ## 发行版本
+## [1.2.4] - 2020-07-25
+### 依赖升级
+- :arrow_up: 升级 spring boot 到 2.3.2.RELEASE。
+
+## [1.2.3] - 2020-05-30
+### 新功能
+- 添加 `AutoConfigurationImportFilter` 的 `@AutoConfigImportFilter`。
+- 添加 `TemplateAvailabilityProvider` 的 `@AutoTemplateProvider`。
+
+### 依赖升级
+- :arrow_up: 升级 spring bootVersion 到 2.3.0.RELEASE。
+- :arrow_up: 升级 google auto 到 1.0-rc7。
+
+## [1.2.2] - 2020-04-27
+### 新功能
+- 添加可用于忽略生成到 spring.factories 的 `@AutoIgnore`。
+
+### 依赖升级
+- lombok 升级到 `1.18.12`。
+
 ## [1.2.2] - 2020-04-27
 ### 添加
 - 添加可用于忽略生成到 spring.factories 的 `@AutoIgnore`。
