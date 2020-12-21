@@ -36,7 +36,6 @@
 | @AutoIgnore             | 忽略，不生成到 spring.factories  |
 | @AutoService            | java Spi 生成配置               |
 
-
 ## 使用
 `注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。
 
@@ -45,19 +44,19 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>1.3.0</version>
+  <version>2.0.0</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:1.3.0")
+annotationProcessor("net.dreamlu:mica-auto:2.0.0")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:1.3.0"
+compileOnly "net.dreamlu:mica-auto:2.0.0"
 ```
 
 ## 原理
