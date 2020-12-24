@@ -60,7 +60,12 @@ public enum BootAutoType {
 	/**
 	 * TemplateAvailabilityProvider 添加到 spring.factories
 	 */
-	TEMPLATE_AVAILABILITY_PROVIDER(AutoTemplateProvider.class.getName(), "org.springframework.boot.autoconfigure.template.TemplateAvailabilityProvider");
+	TEMPLATE_AVAILABILITY_PROVIDER(AutoTemplateProvider.class.getName(), "org.springframework.boot.autoconfigure.template.TemplateAvailabilityProvider"),
+	/**
+	 * auto EnableCircuitBreaker
+	 */
+	AUTO_ENABLE_CIRCUIT_BREAKER(AutoEnableCircuitBreaker.class.getName(), "org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker"),
+	;
 
 	private final String annotation;
 	private final String configureKey;

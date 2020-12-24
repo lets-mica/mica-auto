@@ -2,6 +2,10 @@
 
 ## 发行版本
 ## [2.0.0] - 2020-11-15
+### 新功能
+-  添加 AutoEnableCircuitBreaker。
+
+## [2.0.0] - 2020-11-15
 ### 依赖升级
 - :arrow_up: 升级 spring boot 到 2.4.1。
 
