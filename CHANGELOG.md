@@ -1,9 +1,14 @@
 # 变更记录
 
 ## 发行版本
+## [2.0.2] - 2020-12-24
+### 新功能
+- 添加 AutoConfigDataLocationResolver。
+- 添加 AutoConfigDataLoader
+
 ## [2.0.1] - 2020-12-24
 ### 新功能
--  添加 AutoEnableCircuitBreaker。
+- 添加 AutoEnableCircuitBreaker。
 
 ## [2.0.0] - 2020-11-15
 ### 依赖升级

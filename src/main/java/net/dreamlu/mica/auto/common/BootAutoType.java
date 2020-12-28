@@ -65,6 +65,14 @@ public enum BootAutoType {
 	 * auto EnableCircuitBreaker
 	 */
 	AUTO_ENABLE_CIRCUIT_BREAKER(AutoEnableCircuitBreaker.class.getName(), "org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker"),
+	/**
+	 * auto ConfigDataLocationResolver
+	 */
+	AUTO_CONFIG_DATA_LOCATION_RESOLVER(AutoConfigDataLocationResolver.class.getName(), "org.springframework.boot.context.config.ConfigDataLocationResolver"),
+	/**
+	 * auto ConfigDataLoader
+	 */
+	AUTO_CONFIG_DATA_LOADER(AutoConfigDataLoader.class.getName(), "org.springframework.boot.context.config.ConfigDataLoader"),
 	;
 
 	private final String annotation;
