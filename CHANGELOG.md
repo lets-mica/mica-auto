@@ -1,7 +1,7 @@
 # 变更记录
 
 ## 发行版本
-## [2.0.2] - 2020-12-24
+## [2.0.3] - 2020-12-28
 ### 新功能
 - 添加 AutoConfigDataLocationResolver。
 - 添加 AutoConfigDataLoader

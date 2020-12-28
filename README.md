@@ -46,19 +46,19 @@
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>2.0.2</version>
+  <version>2.0.3</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:2.0.2")
+annotationProcessor("net.dreamlu:mica-auto:2.0.3")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:2.0.2"
+compileOnly "net.dreamlu:mica-auto:2.0.3"
 ```
 
 ## 原理
