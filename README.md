@@ -7,8 +7,9 @@
 
 [版本更新记录](CHANGELOG.md)
 
-## 推荐
-`mica 微服务框架`：https://github.com/lets-mica/mica
+## 原理
+
+mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 就存在了。 Annotation Processor 是 javac 的一个工具，它用来在编译时扫描和处理注解。通过 Annotation Processor 可以获取到注解和被注解对象的相关信息，然后根据注解自动生成Java代码，省去了手动编写，提高了编码效率。大名鼎鼎的 Lombok 也是采用的该技术。
 
 ## 使用场景
 主要是用来避免 Spring boot 主项目包同 `子项目`或者`子模块` 包不一致，避免包扫描不到的问题。 
@@ -17,10 +18,9 @@
 - 多模块项目中的`子项目`（不建议主项目添加 `mica-auto`）。
 
 ## 功能
-1. 生成 `spring.factories`。
-2. 生成 `spring-devtools.properties`
-3. 生成 `FeignClient` 到 `spring.factories` 中，供 `mica-cloud` 中完成 `Feign` 自动化配置。
-4. 生成 java Spi 配置，需要添加 `@AutoService` 注解。
+- 自动生成 spring.factories、spring-devtools.properties 配置（Spring boot starter 开发利器）。
+- 生成 FeignClient 到 spring.factories 中，供 mica-cloud 中完成 Feign 自动化配置。
+- 生成 java spi 配置，需要添加 `@AutoService` 注解。
 
 | 注解                            | spring.factories 或 Spi key     |
 | ------------------------------- | ------------------------------- |
@@ -63,6 +63,14 @@ compileOnly "net.dreamlu:mica-auto:2.0.3"
 
 ## 原理
 扫描 `@Component`，自动生成相应的配置，支持组合注解。
+
+## mica 生态
+
+- mica (Spring cloud 微服务组件集): https://gitee.com/596392912/mica
+- mica-auto (Spring boot starter 利器): https://gitee.com/596392912/mica-auto
+- mica-weixin（jfinal weixin 的 spring boot starter）：https://gitee.com/596392912/mica-weixin
+- mica-mqtt（基于 t-io 实现的 mqtt组件）：https://gitee.com/596392912/mica-mqtt
+- Spring cloud 微服务 http2 方案（h2c）: https://gitee.com/596392912/spring-cloud-java11
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）
