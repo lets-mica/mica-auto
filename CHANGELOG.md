@@ -1,6 +1,11 @@
 # 变更记录
 
 ## 发行版本
+## [2.0.4] - 2021-03-21
+### 新功能
+- :arrow_up: 升级 Spring boot 到 2.4.4
+- :arrow_up: 升级 lombok 到 1.18.18
+
 ## [2.0.3] - 2020-12-28
 ### 新功能
 - 添加 AutoConfigDataLocationResolver。
