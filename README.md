@@ -46,19 +46,19 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>2.0.3</version>
+  <version>2.0.4</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:2.0.3")
+annotationProcessor("net.dreamlu:mica-auto:2.0.4")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:2.0.3"
+compileOnly "net.dreamlu:mica-auto:2.0.4"
 ```
 
 ## 原理
