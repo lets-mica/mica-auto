@@ -21,6 +21,8 @@ import net.dreamlu.mica.auto.annotation.AutoIgnore;
 import net.dreamlu.mica.auto.common.AbstractMicaProcessor;
 import net.dreamlu.mica.auto.common.BootAutoType;
 import net.dreamlu.mica.auto.common.MultiSetMap;
+import net.ltgt.gradle.incap.IncrementalAnnotationProcessor;
+import net.ltgt.gradle.incap.IncrementalAnnotationProcessorType;
 
 import javax.annotation.processing.*;
 import javax.lang.model.element.Element;
@@ -45,6 +47,7 @@ import java.util.stream.Collectors;
 @AutoService(Processor.class)
 @SupportedAnnotationTypes("*")
 @SupportedOptions("debug")
+@IncrementalAnnotationProcessor(IncrementalAnnotationProcessorType.AGGREGATING)
 public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	/**
 	 * 处理的注解 @FeignClient
