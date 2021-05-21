@@ -4,6 +4,7 @@
 ## [2.1.0] - 2021-05-21
 ### 新功能
 - :sparkles: 支持 gradle 增量编译
+- :sparkles: 优化 jar manifest
 - :arrow_up: 升级 Spring boot 到 2.5.0
 - :arrow_up: 升级 lombok 到 1.18.20
 - :arrow_up: 升级 google auto 到 1.0
