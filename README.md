@@ -1,4 +1,4 @@
-# mica-auto java SPI、Spring boot stater 利器
+# mica-auto SPI、Spring boot stater 利器
 [![Java CI](https://github.com/lets-mica/mica-auto/workflows/Java%20CI/badge.svg)](https://github.com/lets-mica/mica-auto/actions)
 ![JAVA 8](https://img.shields.io/badge/JDK-1.8+-brightgreen.svg)
 [![mica-auto Maven](https://img.shields.io/maven-central/v/net.dreamlu/mica-auto.svg?style=flat-square)](https://mvnrepository.com/artifact/net.dreamlu/mica-auto)
