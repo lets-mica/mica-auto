@@ -25,15 +25,15 @@ import java.util.*;
  */
 public class MultiSetMap<K, V> {
 	private transient final Map<K, Set<V>> map;
-	
+
 	public MultiSetMap() {
 		map = new HashMap<>();
 	}
-	
+
 	private Set<V> createSet() {
 		return new HashSet<>();
 	}
-	
+
 	/**
 	 * put to MultiSetMap
 	 * @param key 键
@@ -50,10 +50,8 @@ public class MultiSetMap<K, V> {
 			} else {
 				throw new AssertionError("New set violated the set spec");
 			}
-		} else if (set.add(value)) {
-			return true;
 		} else {
-			return false;
+			return set.add(value);
 		}
 	}
 
@@ -98,7 +96,7 @@ public class MultiSetMap<K, V> {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * get List by key
 	 * @param key 键
@@ -107,7 +105,7 @@ public class MultiSetMap<K, V> {
 	public Set<V> get(K key) {
 		return map.get(key);
 	}
-	
+
 	/**
 	 * clear MultiSetMap
 	 */

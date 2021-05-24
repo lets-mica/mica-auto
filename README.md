@@ -2,6 +2,7 @@
 [![Java CI](https://github.com/lets-mica/mica-auto/workflows/Java%20CI/badge.svg)](https://github.com/lets-mica/mica-auto/actions)
 ![JAVA 8](https://img.shields.io/badge/JDK-1.8+-brightgreen.svg)
 [![mica-auto Maven](https://img.shields.io/maven-central/v/net.dreamlu/mica-auto.svg?style=flat-square)](https://mvnrepository.com/artifact/net.dreamlu/mica-auto)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/681f9f08bc3d4b799f843eb2ff8be287)](https://www.codacy.com/gh/lets-mica/mica-auto/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lets-mica/mica-auto&amp;utm_campaign=Badge_Grade)
 
 `mica-auto` 是 `Spring cloud` 微服务框架 `Mica` 中的一个基础组件，用来生成 `Spring boot starter` 的一些基础配置。 
 
