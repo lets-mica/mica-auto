@@ -5,7 +5,8 @@ ext {
     javaVersion = JavaVersion.VERSION_1_8
     springBootVersion = "2.5.0"
     lombokVersion = "1.18.20"
-    googleAutoServiceVersion = "1.0"
+    googleAutoVersion = "1.0"
+    compileTestingVersion = "0.19"
     incapVersion = "0.3"
 }
 
@@ -28,10 +29,11 @@ dependencies {
     api "org.springframework.boot:spring-boot-autoconfigure-processor:$springBootVersion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
-    compileOnly "com.google.auto.service:auto-service:$googleAutoServiceVersion"
-    annotationProcessor "com.google.auto.service:auto-service:$googleAutoServiceVersion"
-    compileOnly "net.ltgt.gradle.incap:incap:${incapVersion}"
-    annotationProcessor "net.ltgt.gradle.incap:incap-processor:${incapVersion}"
+    compileOnly "com.google.auto.service:auto-service:$googleAutoVersion"
+    annotationProcessor "com.google.auto.service:auto-service:$googleAutoVersion"
+    compileOnly "net.ltgt.gradle.incap:incap:$incapVersion"
+    annotationProcessor "net.ltgt.gradle.incap:incap-processor:$incapVersion"
+    testImplementation "com.google.testing.compile:compile-testing:$compileTestingVersion"
 }
 
 repositories {
