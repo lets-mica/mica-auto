@@ -88,7 +88,7 @@ LGPL是GPL的一个为主要为类库使用设计的开源协议。和GPL要求�
 ## 参考
 Google Auto: https://github.com/google/auto
 
-Spring 5 - spring-context-indexer：https://github.com/spring-projects/spring-framework/tree/master/spring-context-indexer
+Spring 5 - spring-context-indexer: https://github.com/spring-projects/spring-framework/tree/main/spring-context-indexer
 
 ## 微信公众号
 
