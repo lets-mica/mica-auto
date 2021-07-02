@@ -73,6 +73,14 @@ public enum BootAutoType {
 	 * auto ConfigDataLoader
 	 */
 	AUTO_CONFIG_DATA_LOADER(AutoConfigDataLoader.class.getName(), "org.springframework.boot.context.config.ConfigDataLoader"),
+	/**
+	 * auto DatabaseInitializerDetector
+	 */
+	AUTO_DATABASE_INITIALIZER_DETECTOR(AutoDatabaseInitializerDetector.class.getName(), "org.springframework.boot.sql.init.dependency.DatabaseInitializerDetector"),
+	/**
+	 * auto DependsOnDatabaseInitializationDetector
+	 */
+	AUTO_DEPENDS_ON_DATABASE_INITIALIZATION_DETECTOR(AutoDependsOnDatabaseInitializationDetector.class.getName(), "org.springframework.boot.sql.init.dependency.DependsOnDatabaseInitializationDetector"),
 	;
 
 	private final String annotation;

@@ -35,6 +35,8 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 | @AutoEnableCircuitBreaker       | EnableCircuitBreaker            |
 | @AutoConfigDataLocationResolver | ConfigDataLocationResolver      |
 | @AutoConfigDataLoader           | ConfigDataLoader                |
+| @AutoDatabaseInitializerDetector | DatabaseInitializerDetector         |
+| @AutoDependsOnDatabaseInitializationDetector | DependsOnDatabaseInitializationDetector         |
 | @Component                      | EnableAutoConfiguration         |
 | @AutoIgnore                     | 忽略，不生成到 spring.factories |
 | @AutoService                    | java Spi 生成配置               |
