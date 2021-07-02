@@ -1,0 +1,5 @@
+---
+exclude_paths:
+  - 'gradle/**'
+  - '**.md'
+  - '**/test/**'
