@@ -1,6 +1,11 @@
 # 变更记录
 
 ## 发行版本
+## [2.1.2] - 2021-07-26
+### 新功能
+- :sparkles: `@AutoService` 支持 gradle 增量编译
+- :arrow_up: 升级 Spring boot 到 2.5.3
+
 ## [2.1.1] - 2021-07-02
 ### 新功能
 - :sparkles: 添加 DatabaseInitializer 相关支持

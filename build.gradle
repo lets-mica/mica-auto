@@ -3,7 +3,7 @@ apply from: "${rootProject.projectDir}/gradle/publish-maven.gradle"
 
 ext {
     javaVersion = JavaVersion.VERSION_1_8
-    springBootVersion = "2.5.2"
+    springBootVersion = "2.5.3"
     lombokVersion = "1.18.20"
     googleAutoVersion = "1.0"
     compileTestingVersion = "0.19"
