@@ -51,11 +51,11 @@ class ServicesFiles {
 		) {
 			String line;
 			while ((line = r.readLine()) != null) {
-				int commentStart = line.indexOf('#');
-				if (commentStart >= 0) {
-					line = line.substring(0, commentStart);
-				}
 				line = line.trim();
+				// 跳过注释行
+				if (line.startsWith("#")) {
+					continue;
+				}
 				// 校验是否删除文件
 				if (!line.isEmpty() && Objects.nonNull(elementUtils.getTypeElement(line))) {
 					serviceClasses.add(line);
