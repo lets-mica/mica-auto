@@ -167,10 +167,12 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 			} catch (IOException e) {
 				log("spring.factories resource file did not already exist.");
 			}
+			// 原有配置 + 增量
 			allFactories.putAll(factories);
 			log("New spring.factories file contents: " + allFactories);
 			FileObject factoriesFile = filer.createResource(StandardLocation.CLASS_OUTPUT, "", FACTORIES_RESOURCE_LOCATION);
-			FactoriesFiles.writeFactoriesFile(factories, factoriesFile.openOutputStream());
+			FactoriesFiles.writeFactoriesFile(allFactories, factoriesFile.openOutputStream());
+
 			// 2. devtools 配置，因为有 @Configuration 注解的需要 devtools
 			String classesPath = factoriesFile.toUri().toString().split("classes")[0];
 			Path projectPath = Paths.get(new URI(classesPath)).getParent();
