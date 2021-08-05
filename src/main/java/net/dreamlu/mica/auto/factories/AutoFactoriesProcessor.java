@@ -32,6 +32,7 @@ import javax.lang.model.util.Elements;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -161,7 +162,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 				FileObject existingFactoriesFile = filer.getResource(StandardLocation.CLASS_OUTPUT, "", FACTORIES_RESOURCE_LOCATION);
 				// 查找是否已经存在 spring.factories
 				log("Looking for existing spring.factories file at " + existingFactoriesFile.toUri());
-				MultiSetMap<String, String> existingFactories = FactoriesFiles.readFactoriesFile(existingFactoriesFile.openInputStream(), elementUtils);
+				MultiSetMap<String, String> existingFactories = FactoriesFiles.readFactoriesFile(existingFactoriesFile, elementUtils);
 				log("Existing spring.factories entries: " + existingFactories);
 				allFactories.putAll(existingFactories);
 			} catch (IOException e) {
@@ -171,14 +172,18 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 			allFactories.putAll(factories);
 			log("New spring.factories file contents: " + allFactories);
 			FileObject factoriesFile = filer.createResource(StandardLocation.CLASS_OUTPUT, "", FACTORIES_RESOURCE_LOCATION);
-			FactoriesFiles.writeFactoriesFile(allFactories, factoriesFile.openOutputStream());
+			try (OutputStream out = factoriesFile.openOutputStream()) {
+				FactoriesFiles.writeFactoriesFile(allFactories, out);
+			}
 
 			// 2. devtools 配置，因为有 @Configuration 注解的需要 devtools
 			String classesPath = factoriesFile.toUri().toString().split("classes")[0];
 			Path projectPath = Paths.get(new URI(classesPath)).getParent();
 			String projectName = projectPath.getFileName().toString();
 			FileObject devToolsFile = filer.createResource(StandardLocation.CLASS_OUTPUT, "", DEVTOOLS_RESOURCE_LOCATION);
-			FactoriesFiles.writeDevToolsFile(projectName, devToolsFile.openOutputStream());
+			try (OutputStream out = devToolsFile.openOutputStream()) {
+				FactoriesFiles.writeDevToolsFile(projectName, out);
+			}
 		} catch (IOException | URISyntaxException e) {
 			fatalError(e);
 		}

@@ -19,6 +19,7 @@ package net.dreamlu.mica.auto.service;
 import lombok.experimental.UtilityClass;
 
 import javax.lang.model.util.Elements;
+import javax.tools.FileObject;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -39,13 +40,14 @@ class ServicesFiles {
 	/**
 	 * Reads the set of service classes from a service file.
 	 *
-	 * @param input not {@code null}. Closed after use.
+	 * @param fileObject not {@code null}. Closed after use.
 	 * @return a not {@code null Set} of service class names.
 	 * @throws IOException
 	 */
-	protected static Set<String> readServiceFile(InputStream input, Elements elementUtils) throws IOException {
+	protected static Set<String> readServiceFile(FileObject fileObject, Elements elementUtils) throws IOException {
 		HashSet<String> serviceClasses = new HashSet<>();
 		try (
+			InputStream input = fileObject.openInputStream();
 			InputStreamReader isr = new InputStreamReader(input, UTF_8);
 			BufferedReader r = new BufferedReader(isr)
 		) {

@@ -136,7 +136,7 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 				try {
 					FileObject existingFile = filer.getResource(StandardLocation.CLASS_OUTPUT, "", resourceFile);
 					log("Looking for existing resource file at " + existingFile.toUri());
-					Set<String> oldServices = ServicesFiles.readServiceFile(existingFile.openInputStream(), elementUtils);
+					Set<String> oldServices = ServicesFiles.readServiceFile(existingFile, elementUtils);
 					log("Existing service entries: " + oldServices);
 					allServices.addAll(oldServices);
 				} catch (IOException e) {
@@ -152,9 +152,9 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 				allServices.addAll(newServices);
 				log("New service file contents: " + allServices);
 				FileObject fileObject = filer.createResource(StandardLocation.CLASS_OUTPUT, "", resourceFile);
-				OutputStream out = fileObject.openOutputStream();
-				ServicesFiles.writeServiceFile(allServices, out);
-				out.close();
+				try (OutputStream out = fileObject.openOutputStream()) {
+					ServicesFiles.writeServiceFile(allServices, out);
+				}
 				log("Wrote to: " + fileObject.toUri());
 			} catch (IOException e) {
 				fatalError("Unable to create " + resourceFile + ", " + e);
