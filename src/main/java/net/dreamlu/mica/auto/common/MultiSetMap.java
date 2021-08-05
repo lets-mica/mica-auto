@@ -112,7 +112,9 @@ public class MultiSetMap<K, V> {
 		if (data == null || data.isEmpty()) {
 			return false;
 		} else {
-			map.putAll(data.map);
+			for (K k : data.keySet()) {
+				this.putAll(k, data.get(k));
+			}
 			return true;
 		}
 	}
