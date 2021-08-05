@@ -2,11 +2,11 @@
 
 ## 发行版本
 ## [2.1.3] - 2021-08-05
-:sparkles: 代码优化，优化流关闭。
-:sparkles: 优化 github actions。
-:bug: 修复 spi，去除注释。
-:bug: 修复 gitee #I4193Q idea 增量编译 bug。
-:bug: 修复 spring-devtools.properties 匹配 bug。
+- :sparkles: 代码优化，优化流关闭。
+- :sparkles: 优化 github actions。
+- :bug: 修复 spi，去除注释。
+- :bug: 修复 gitee #I4193Q idea 增量编译 bug。
+- :bug: 修复 spring-devtools.properties 匹配 bug。
 
 ## [2.1.2] - 2021-07-26
 ### 新功能
