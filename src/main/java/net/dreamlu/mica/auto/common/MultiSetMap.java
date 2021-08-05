@@ -36,7 +36,8 @@ public class MultiSetMap<K, V> {
 
 	/**
 	 * put to MultiSetMap
-	 * @param key 键
+	 *
+	 * @param key   键
 	 * @param value 值
 	 * @return boolean
 	 */
@@ -57,6 +58,7 @@ public class MultiSetMap<K, V> {
 
 	/**
 	 * 是否包含某个key
+	 *
 	 * @param key key
 	 * @return 结果
 	 */
@@ -66,6 +68,7 @@ public class MultiSetMap<K, V> {
 
 	/**
 	 * 是否包含 value 中的某个值
+	 *
 	 * @param value value
 	 * @return 是否包含
 	 */
@@ -76,6 +79,7 @@ public class MultiSetMap<K, V> {
 
 	/**
 	 * key 集合
+	 *
 	 * @return keys
 	 */
 	public Set<K> keySet() {
@@ -84,6 +88,7 @@ public class MultiSetMap<K, V> {
 
 	/**
 	 * put list to MultiSetMap
+	 *
 	 * @param key 键
 	 * @param set 值列表
 	 * @return boolean
@@ -91,14 +96,30 @@ public class MultiSetMap<K, V> {
 	public boolean putAll(K key, Set<V> set) {
 		if (set == null) {
 			return false;
+		}
+		Set<V> vSet = map.computeIfAbsent(key, k -> createSet());
+		vSet.addAll(set);
+		return true;
+	}
+
+	/**
+	 * put MultiSetMap to MultiSetMap
+	 *
+	 * @param data MultiSetMap
+	 * @return boolean
+	 */
+	public boolean putAll(MultiSetMap<K, V> data) {
+		if (data == null || data.isEmpty()) {
+			return false;
 		} else {
-			map.put(key, set);
+			map.putAll(data.map);
 			return true;
 		}
 	}
 
 	/**
 	 * get List by key
+	 *
 	 * @param key 键
 	 * @return List
 	 */
@@ -115,9 +136,16 @@ public class MultiSetMap<K, V> {
 
 	/**
 	 * isEmpty
+	 *
 	 * @return isEmpty
 	 */
 	public boolean isEmpty() {
 		return map.isEmpty();
 	}
+
+	@Override
+	public String toString() {
+		return map.toString();
+	}
+
 }

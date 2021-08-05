@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  net.dreamlu.mica.metrics.druid.DruidMetricsConfiguration,\
+  net.dreamlu.mica.metrics.undertow.UndertowMetricsConfiguration
+
+org.springframework.context.ApplicationListener=

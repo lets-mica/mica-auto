@@ -1,4 +1,4 @@
-package net.dreamlu.mica.auto.test;
+package net.dreamlu.mica.auto.service;
 
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.Compiler;
