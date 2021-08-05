@@ -136,7 +136,7 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 				try {
 					FileObject existingFile = filer.getResource(StandardLocation.CLASS_OUTPUT, "", resourceFile);
 					log("Looking for existing resource file at " + existingFile.toUri());
-					Set<String> oldServices = ServicesFiles.readServiceFile(existingFile.openInputStream());
+					Set<String> oldServices = ServicesFiles.readServiceFile(existingFile.openInputStream(), elementUtils);
 					log("Existing service entries: " + oldServices);
 					allServices.addAll(oldServices);
 				} catch (IOException e) {

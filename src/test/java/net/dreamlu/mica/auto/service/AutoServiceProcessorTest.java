@@ -3,7 +3,6 @@ package net.dreamlu.mica.auto.service;
 import com.google.testing.compile.Compilation;
 import com.google.testing.compile.Compiler;
 import com.google.testing.compile.JavaFileObjects;
-import net.dreamlu.mica.auto.service.AutoServiceProcessor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

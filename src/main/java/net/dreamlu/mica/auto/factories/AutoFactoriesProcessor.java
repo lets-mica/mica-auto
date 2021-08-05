@@ -161,7 +161,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 				FileObject existingFactoriesFile = filer.getResource(StandardLocation.CLASS_OUTPUT, "", FACTORIES_RESOURCE_LOCATION);
 				// 查找是否已经存在 spring.factories
 				log("Looking for existing spring.factories file at " + existingFactoriesFile.toUri());
-				MultiSetMap<String, String> existingFactories = FactoriesFiles.readFactoriesFile(existingFactoriesFile.openInputStream());
+				MultiSetMap<String, String> existingFactories = FactoriesFiles.readFactoriesFile(existingFactoriesFile.openInputStream(), elementUtils);
 				log("Existing spring.factories entries: " + existingFactories);
 				allFactories.putAll(existingFactories);
 			} catch (IOException e) {

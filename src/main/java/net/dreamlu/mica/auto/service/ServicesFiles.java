@@ -18,11 +18,13 @@ package net.dreamlu.mica.auto.service;
 
 import lombok.experimental.UtilityClass;
 
+import javax.lang.model.util.Elements;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -41,7 +43,7 @@ class ServicesFiles {
 	 * @return a not {@code null Set} of service class names.
 	 * @throws IOException
 	 */
-	protected static Set<String> readServiceFile(InputStream input) throws IOException {
+	protected static Set<String> readServiceFile(InputStream input, Elements elementUtils) throws IOException {
 		HashSet<String> serviceClasses = new HashSet<>();
 		try (
 			InputStreamReader isr = new InputStreamReader(input, UTF_8);
@@ -54,7 +56,8 @@ class ServicesFiles {
 					line = line.substring(0, commentStart);
 				}
 				line = line.trim();
-				if (!line.isEmpty()) {
+				// 校验是否删除文件
+				if (!line.isEmpty() && Objects.nonNull(elementUtils.getTypeElement(line))) {
 					serviceClasses.add(line);
 				}
 			}

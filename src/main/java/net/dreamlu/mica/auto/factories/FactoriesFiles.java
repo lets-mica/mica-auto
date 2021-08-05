@@ -19,6 +19,7 @@ package net.dreamlu.mica.auto.factories;
 import lombok.experimental.UtilityClass;
 import net.dreamlu.mica.auto.common.MultiSetMap;
 
+import javax.lang.model.util.Elements;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -41,7 +42,7 @@ class FactoriesFiles {
 	 * @return MultiSetMap
 	 * @throws IOException 异常信息
 	 */
-	protected static MultiSetMap<String, String> readFactoriesFile(InputStream inputStream) throws IOException {
+	protected static MultiSetMap<String, String> readFactoriesFile(InputStream inputStream, Elements elementUtils) throws IOException {
 		// 读取 spring.factories 内容
 		Properties properties = new Properties();
 		try {
@@ -64,6 +65,8 @@ class FactoriesFiles {
 			Set<String> valueSet = Arrays.stream(values)
 				.filter(v -> !v.isEmpty())
 				.map(String::trim)
+				// 校验是否删除文件
+				.filter((v) -> Objects.nonNull(elementUtils.getTypeElement(v)))
 				.collect(Collectors.toSet());
 			multiSetMap.putAll(key.trim(), valueSet);
 		}
