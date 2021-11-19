@@ -1,6 +1,12 @@
 # 变更记录
 
 ## 发行版本
+## [2.2.0] - 2021-11-20
+- :arrow_up: 升级 gradle 到 7.3
+- :arrow_up: 升级 lombok 到 1.18.22
+- :arrow_up: 升级 google auto 到 1.0.1
+- :arrow_up: 升级 Spring boot 到 2.6.0
+
 ## [2.1.3] - 2021-08-05
 - :sparkles: 代码优化，优化流关闭。
 - :sparkles: 优化 github actions。
