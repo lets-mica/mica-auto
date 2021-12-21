@@ -1,6 +1,13 @@
 # 变更记录
 
 ## 发行版本
+## [2.2.2] - 2021-12-26
+- :sparkles: 支持合并用户手写的 `spring.factories` 配置
+- :arrow_up: 升级 Spring boot 到 2.6.2
+
+## [2.2.1] - 2021-12-10
+- :arrow_up: 升级 Spring boot 到 2.6.1
+
 ## [2.2.0] - 2021-11-20
 - :arrow_up: 升级 gradle 到 7.3
 - :arrow_up: 升级 lombok 到 1.18.22
