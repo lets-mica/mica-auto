@@ -70,7 +70,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	/**
 	 * 数据承载
 	 */
-	private MultiSetMap<String, String> factories = new MultiSetMap<>();
+	private final MultiSetMap<String, String> factories = new MultiSetMap<>();
 	/**
 	 * 元素辅助类
 	 */
@@ -156,8 +156,20 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 		}
 		Filer filer = processingEnv.getFiler();
 		try {
-			// 1. spring.factories
+			// spring.factories 配置
 			MultiSetMap<String, String> allFactories = new MultiSetMap<>();
+			// 1. 用户手动配置项目下的 spring.factories 文件
+			try {
+				FileObject existingFactoriesFile = filer.getResource(StandardLocation.SOURCE_OUTPUT, "", FACTORIES_RESOURCE_LOCATION);
+				// 查找是否已经存在 spring.factories
+				log("Looking for existing spring.factories file at " + existingFactoriesFile.toUri());
+				MultiSetMap<String, String> existingFactories = FactoriesFiles.readFactoriesFile(existingFactoriesFile, elementUtils);
+				log("Existing spring.factories entries: " + existingFactories);
+				allFactories.putAll(existingFactories);
+			} catch (IOException e) {
+				log("spring.factories resource file not found.");
+			}
+			// 2. 增量编译，已经存在的 spring.factories 文件
 			try {
 				FileObject existingFactoriesFile = filer.getResource(StandardLocation.CLASS_OUTPUT, "", FACTORIES_RESOURCE_LOCATION);
 				// 查找是否已经存在 spring.factories
@@ -168,15 +180,14 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 			} catch (IOException e) {
 				log("spring.factories resource file did not already exist.");
 			}
-			// 原有配置 + 增量
+			// 3. 处理器扫描出来的新的配置
 			allFactories.putAll(factories);
 			log("New spring.factories file contents: " + allFactories);
 			FileObject factoriesFile = filer.createResource(StandardLocation.CLASS_OUTPUT, "", FACTORIES_RESOURCE_LOCATION);
 			try (OutputStream out = factoriesFile.openOutputStream()) {
 				FactoriesFiles.writeFactoriesFile(allFactories, out);
 			}
-
-			// 2. devtools 配置，因为有 @Configuration 注解的需要 devtools
+			// 4. devtools 配置，因为有 @Configuration 注解的需要 devtools
 			String classesPath = factoriesFile.toUri().toString().split("classes")[0];
 			Path projectPath = Paths.get(new URI(classesPath)).getParent();
 			String projectName = projectPath.getFileName().toString();

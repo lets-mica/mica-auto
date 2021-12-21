@@ -52,7 +52,7 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 	/**
 	 * spi 服务集合，key 接口 -> value 实现列表
 	 */
-	private MultiSetMap<String, String> providers = new MultiSetMap<>();
+	private final MultiSetMap<String, String> providers = new MultiSetMap<>();
 	/**
 	 * 元素辅助类
 	 */
@@ -133,6 +133,17 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 			log("Working on resource file: " + resourceFile);
 			try {
 				SortedSet<String> allServices = new TreeSet<>();
+				// 1. 存在用户手动编写的配置
+				try {
+					FileObject existingFile = filer.getResource(StandardLocation.SOURCE_OUTPUT, "", resourceFile);
+					log("Looking for existing resource file at " + existingFile.toUri());
+					Set<String> oldServices = ServicesFiles.readServiceFile(existingFile, elementUtils);
+					log("Existing service entries: " + oldServices);
+					allServices.addAll(oldServices);
+				} catch (IOException e) {
+					log("Resource file did not already exist.");
+				}
+				// 2. 增量编译
 				try {
 					FileObject existingFile = filer.getResource(StandardLocation.CLASS_OUTPUT, "", resourceFile);
 					log("Looking for existing resource file at " + existingFile.toUri());
@@ -142,13 +153,12 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 				} catch (IOException e) {
 					log("Resource file did not already exist.");
 				}
-
 				Set<String> newServices = new HashSet<>(providers.get(providerInterface));
 				if (allServices.containsAll(newServices)) {
 					log("No new service entries being added.");
 					return;
 				}
-
+				// 3. 注解处理器新扫描出来的
 				allServices.addAll(newServices);
 				log("New service file contents: " + allServices);
 				FileObject fileObject = filer.createResource(StandardLocation.CLASS_OUTPUT, "", resourceFile);
@@ -219,7 +229,7 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 		if (type instanceof DeclaredType) {
 			DeclaredType declaredType = (DeclaredType) type;
 			Element enclosingElement = declaredType.asElement().getEnclosingElement();
-			if (enclosingElement != null && enclosingElement instanceof TypeElement) {
+			if (enclosingElement instanceof TypeElement) {
 				return getQualifiedName(enclosingElement) + "$" + declaredType.asElement().getSimpleName().toString();
 			} else {
 				return getQualifiedName(declaredType.asElement());
