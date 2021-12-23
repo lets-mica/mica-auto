@@ -51,7 +51,7 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>2.2.1</version>
+  <version>2.2.2</version>
   <scope>provided</scope>
 </dependency>
 ```

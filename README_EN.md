@@ -49,7 +49,7 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>2.2.1</version>
+  <version>2.2.2</version>
   <scope>provided</scope>
 </dependency>
 ```
