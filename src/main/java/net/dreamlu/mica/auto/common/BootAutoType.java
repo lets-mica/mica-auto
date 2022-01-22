@@ -81,6 +81,10 @@ public enum BootAutoType {
 	 * auto DependsOnDatabaseInitializationDetector
 	 */
 	AUTO_DEPENDS_ON_DATABASE_INITIALIZATION_DETECTOR(AutoDependsOnDatabaseInitializationDetector.class.getName(), "org.springframework.boot.sql.init.dependency.DependsOnDatabaseInitializationDetector"),
+	/**
+	 * auto LoggingSystemFactory
+	 */
+	AUTO_LOGGING_SYSTEM(AutoLoggingSystemFactory.class.getName(), "org.springframework.boot.logging.LoggingSystemFactory"),
 	;
 
 	private final String annotation;
