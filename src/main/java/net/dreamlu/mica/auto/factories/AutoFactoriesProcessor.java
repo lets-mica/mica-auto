@@ -37,6 +37,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -72,9 +73,9 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	 */
 	private static final String AUTO_CONFIGURATION = "org.springframework.boot.autoconfigure.AutoConfiguration";
 	/**
-	 * AutoConfiguration imports
+	 * AutoConfiguration imports out put
 	 */
-	private static final String AUTO_CONFIGURATION_IMPORTS = AUTO_CONFIGURATION + ".imports";
+	private static final String AUTO_CONFIGURATION_IMPORTS_LOCATION = "META-INF/spring/" + AUTO_CONFIGURATION + ".imports";
 	/**
 	 * 数据承载
 	 */
@@ -82,7 +83,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	/**
 	 * spring boot 2.7 @AutoConfiguration
 	 */
-	private final MultiSetMap<String, String> autoConfigurationMap = new MultiSetMap<>();
+	private final Set<String> autoConfigurationImportsSet = new LinkedHashSet<>();
 
 	/**
 	 * 元素辅助类
@@ -98,6 +99,9 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	@Override
 	protected boolean processImpl(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 		if (roundEnv.processingOver()) {
+			// 1. 生成 spring boot 2.7.x @AutoConfiguration
+			generateAutoConfigurationImportsFiles();
+			// 2. 生成 spring.factories
 			generateFactoriesFiles();
 		} else {
 			processAnnotations(annotations, roundEnv);
@@ -122,7 +126,6 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 			log("Annotations elementSet is isEmpty");
 			return;
 		}
-
 		for (TypeElement typeElement : typeElementSet) {
 			// ignore @AutoIgnore Element
 			if (isAnnotation(elementUtils, typeElement, AutoIgnore.class.getName())) {
@@ -145,7 +148,9 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 				log("读取到新配置 spring.factories factoryName：" + factoryName);
 				factories.put(FEIGN_AUTO_CONFIGURE_KEY, factoryName);
 			} else if (isAnnotation(elementUtils, typeElement, AUTO_CONFIGURATION)) {
-				// TODO L.cm 待完善
+				String autoConfigurationBeanName = typeElement.getQualifiedName().toString();
+				autoConfigurationImportsSet.add(autoConfigurationBeanName);
+				log("读取到自动配置 @AutoConfiguration：" + autoConfigurationBeanName);
 			} else {
 				for (BootAutoType autoType : BootAutoType.values()) {
 					String annotation = autoType.getAnnotation();
@@ -214,4 +219,47 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 			fatalError(e);
 		}
 	}
+
+	private void generateAutoConfigurationImportsFiles() {
+		if (autoConfigurationImportsSet.isEmpty()) {
+			return;
+		}
+		Filer filer = processingEnv.getFiler();
+		try {
+			// AutoConfiguration 配置
+			Set<String> allAutoConfigurationImports = new LinkedHashSet<>();
+			// 1. 用户手动配置项目下的 AutoConfiguration 文件
+			try {
+				FileObject existingFactoriesFile = filer.getResource(StandardLocation.SOURCE_OUTPUT, "", AUTO_CONFIGURATION_IMPORTS_LOCATION);
+				// 查找是否已经存在 spring.factories
+				log("Looking for existing AutoConfiguration imports file at " + existingFactoriesFile.toUri());
+				Set<String> existingSet = FactoriesFiles.readAutoConfigurationImports(existingFactoriesFile);
+				log("Existing AutoConfiguration imports entries: " + existingSet);
+				allAutoConfigurationImports.addAll(existingSet);
+			} catch (IOException e) {
+				log("AutoConfiguration imports resource file not found.");
+			}
+			// 2. 增量编译，已经存在的配置文件
+			try {
+				FileObject existingFactoriesFile = filer.getResource(StandardLocation.CLASS_OUTPUT, "", AUTO_CONFIGURATION_IMPORTS_LOCATION);
+				// 查找是否已经存在 spring.factories
+				log("Looking for existing AutoConfiguration imports file at " + existingFactoriesFile.toUri());
+				Set<String> existingSet = FactoriesFiles.readAutoConfigurationImports(existingFactoriesFile);
+				log("Existing AutoConfiguration imports entries: " + existingSet);
+				allAutoConfigurationImports.addAll(existingSet);
+			} catch (IOException e) {
+				log("AutoConfiguration imports resource file did not already exist.");
+			}
+			// 3. 处理器扫描出来的新的配置
+			allAutoConfigurationImports.addAll(autoConfigurationImportsSet);
+			log("New AutoConfiguration imports file contents: " + allAutoConfigurationImports);
+			FileObject autoConfigurationImportsFile = filer.createResource(StandardLocation.CLASS_OUTPUT, "", AUTO_CONFIGURATION_IMPORTS_LOCATION);
+			try (OutputStream out = autoConfigurationImportsFile.openOutputStream()) {
+				FactoriesFiles.writeAutoConfigurationImportsFile(allAutoConfigurationImports, out);
+			}
+		} catch (IOException e) {
+			fatalError(e);
+		}
+	}
+
 }
