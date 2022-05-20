@@ -1,6 +1,10 @@
 # 变更记录
 
 ## 发行版本
+## [2.3.0] - 2021-12-26
+- :sparkles: 支持 Spring boot 2.7.0 新特性 `@AutoConfiguration`。 
+- :arrow_up: 升级 Spring boot 到 2.7.0
+
 ## [2.2.2] - 2021-12-26
 - :sparkles: 支持合并用户手写的 `spring.factories` 配置
 - :arrow_up: 升级 Spring boot 到 2.6.2
