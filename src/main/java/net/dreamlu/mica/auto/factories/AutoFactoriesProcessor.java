@@ -68,9 +68,22 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 	 */
 	private static final String DEVTOOLS_RESOURCE_LOCATION = "META-INF/spring-devtools.properties";
 	/**
+	 * AutoConfiguration 注解
+	 */
+	private static final String AUTO_CONFIGURATION = "org.springframework.boot.autoconfigure.AutoConfiguration";
+	/**
+	 * AutoConfiguration imports
+	 */
+	private static final String AUTO_CONFIGURATION_IMPORTS = AUTO_CONFIGURATION + ".imports";
+	/**
 	 * 数据承载
 	 */
 	private final MultiSetMap<String, String> factories = new MultiSetMap<>();
+	/**
+	 * spring boot 2.7 @AutoConfiguration
+	 */
+	private final MultiSetMap<String, String> autoConfigurationMap = new MultiSetMap<>();
+
 	/**
 	 * 元素辅助类
 	 */
@@ -120,7 +133,7 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 				ElementKind elementKind = typeElement.getKind();
 				// Feign Client 只处理 接口
 				if (ElementKind.INTERFACE != elementKind) {
-					fatalError("@FeignClient Element " + typeElement.toString() + " 不是接口。");
+					fatalError("@FeignClient Element " + typeElement + " 不是接口。");
 					continue;
 				}
 
@@ -131,6 +144,8 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 
 				log("读取到新配置 spring.factories factoryName：" + factoryName);
 				factories.put(FEIGN_AUTO_CONFIGURE_KEY, factoryName);
+			} else if (isAnnotation(elementUtils, typeElement, AUTO_CONFIGURATION)) {
+				// TODO L.cm 待完善
 			} else {
 				for (BootAutoType autoType : BootAutoType.values()) {
 					String annotation = autoType.getAnnotation();
