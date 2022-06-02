@@ -1,7 +1,10 @@
 # 变更记录
 
 ## 发行版本
-## [2.3.0] - 2021-12-26
+## [2.3.1] - 2022-06-02
+- :sparkles: 支持生成的 Spring boot 2.7.0 向下兼容。感谢 `@冷冷` 提出的需求。
+
+## [2.3.0] - 2022-05-30
 - :sparkles: 支持 Spring boot 2.7.0 新特性 `@AutoConfiguration`。 
 - :arrow_up: 升级 Spring boot 到 2.7.0
 
