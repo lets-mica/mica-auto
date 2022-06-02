@@ -147,11 +147,14 @@ public class AutoFactoriesProcessor extends AbstractMicaProcessor {
 
 				log("读取到新配置 spring.factories factoryName：" + factoryName);
 				factories.put(FEIGN_AUTO_CONFIGURE_KEY, factoryName);
-			} else if (isAnnotation(elementUtils, typeElement, AUTO_CONFIGURATION)) {
-				String autoConfigurationBeanName = typeElement.getQualifiedName().toString();
-				autoConfigurationImportsSet.add(autoConfigurationBeanName);
-				log("读取到自动配置 @AutoConfiguration：" + autoConfigurationBeanName);
 			} else {
+				// 1. 生成 2.7.x 的 @AutoConfiguration
+				if (isAnnotation(elementUtils, typeElement, AUTO_CONFIGURATION)) {
+					String autoConfigurationBeanName = typeElement.getQualifiedName().toString();
+					autoConfigurationImportsSet.add(autoConfigurationBeanName);
+					log("读取到自动配置 @AutoConfiguration：" + autoConfigurationBeanName);
+				}
+				// 2. 老的 spring.factories
 				for (BootAutoType autoType : BootAutoType.values()) {
 					String annotation = autoType.getAnnotation();
 					if (isAnnotation(elementUtils, typeElement, annotation)) {
