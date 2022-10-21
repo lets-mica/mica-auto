@@ -3,7 +3,7 @@ apply from: "${rootProject.projectDir}/gradle/publish-maven.gradle"
 
 ext {
     javaVersion = JavaVersion.VERSION_1_8
-    springBootVersion = "2.7.0"
+    springBootVersion = "2.7.5"
     lombokVersion = "1.18.24"
     googleAutoVersion = "1.0.1"
     compileTestingVersion = "0.19"
@@ -39,10 +39,5 @@ dependencies {
 
 repositories {
     mavenLocal()
-    maven { url "https://maven.aliyun.com/repository/public" }
-    maven { url "https://maven.aliyun.com/repository/spring" }
-    maven { url "https://maven.aliyun.com/repository/spring-plugin" }
-    maven { url "https://repo.spring.io/libs-release" }
-    maven { url "https://repo.spring.io/milestone" }
     mavenCentral()
 }
