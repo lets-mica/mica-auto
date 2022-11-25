@@ -44,24 +44,31 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 ## Usage
 **Note**: If you are using `Lombok` in your project, place the mica-Auto dependency behind `Lombok`。
 
+## version
+| version   | spring boot version |
+|-------|----------------|
+| 3.x   | 3.x            |
+| 2.3.1 | 1.x ~ 2.x      |
+
+
 ### maven
 ```xml
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>2.3.1</version>
+  <version>${version}</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```gradle
-annotationProcessor("net.dreamlu:mica-auto:2.3.1")
+annotationProcessor("net.dreamlu:mica-auto:${version}")
 ```
 
 ### gradle < 5.x
 ```gradle
-compileOnly "net.dreamlu:mica-auto:2.3.1"
+compileOnly "net.dreamlu:mica-auto:${version}"
 ```
 
 ## Principle
