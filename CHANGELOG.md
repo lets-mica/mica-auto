@@ -1,6 +1,12 @@
 # 变更记录
 
 ## 发行版本
+
+## [3.0.0] - 2022-11-29
+- :sparkles: 支持 Spring boot 3.0.0 aot native 
+- :arrow_up: 升级到 Spring boot 3.0.0
+- :arrow_up: 升级到 java17
+
 ## [2.3.1] - 2022-06-02
 - :sparkles: 支持生成的 Spring boot 2.7.0 向下兼容。感谢 `@冷冷` 提出的需求。
 

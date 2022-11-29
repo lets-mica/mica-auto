@@ -43,14 +43,19 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 | @AutoIgnore                     | 忽略，不生成到 spring.factories |
 | @AutoService                    | java Spi 生成配置               |
 
+| 注解                            | aot.factories                     |
+| @AotRuntimeHintsRegistrar      | RuntimeHintsRegistrar                |
+| @AotBeanRegistration           | BeanRegistrationAotProcessor                |
+| @AotBeanFactoryInitialization  | BeanFactoryInitializationAotProcessor                |
+
 ## 使用
 `注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。
 
 ## 版本说明
-| 最新版本  | spring boot 版本 |
-|-------|----------------|
-| 3.x   | 3.x            |
-| 2.3.1 | 1.x ~ 2.x      |
+| version   | spring boot version | java version |
+|-------|----------------|--------------|
+| 3.x   | 3.x            | 17           |
+| 2.3.1 | 1.x ~ 2.x      | 1.8          |
 
 ### maven
 ```xml

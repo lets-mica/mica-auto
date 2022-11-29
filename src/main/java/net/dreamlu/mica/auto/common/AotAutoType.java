@@ -16,17 +16,17 @@ import net.dreamlu.mica.auto.annotation.AotRuntimeHintsRegistrar;
 public enum AotAutoType {
 
 	/**
-	 * AotBeanRegistration 添加到 aot.factories
-	 */
-	BEAN_REGISTRATION(AotBeanRegistration.class.getName(), "org.springframework.beans.factory.aot.BeanRegistrationAotProcessor"),
-	/**
-	 * ApplicationContextInitializer 添加到 aot.factories
+	 * RuntimeHintsRegistrar 添加到 aot.factories
 	 */
 	RUNTIME_HINTS_REGISTRAR(AotRuntimeHintsRegistrar.class.getName(), "org.springframework.aot.hint.RuntimeHintsRegistrar"),
 	/**
-	 * ApplicationContextInitializer 添加到 aot.factories
+	 * BeanRegistrationAotProcessor 添加到 aot.factories
 	 */
-	BEAN_FACTORY_INITIALIZATION(AotBeanFactoryInitialization.class.getName(), "org.springframework.beans.factory.aot.BeanRegistrationAotProcessor");
+	BEAN_REGISTRATION(AotBeanRegistration.class.getName(), "org.springframework.beans.factory.aot.BeanRegistrationAotProcessor"),
+	/**
+	 * BeanFactoryInitializationAotProcessor 添加到 aot.factories
+	 */
+	BEAN_FACTORY_INITIALIZATION(AotBeanFactoryInitialization.class.getName(), "org.springframework.beans.factory.aot.BeanFactoryInitializationAotProcessor");
 
 	private final String annotation;
 	private final String configureKey;

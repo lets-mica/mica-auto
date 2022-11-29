@@ -41,14 +41,19 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 | @AutoIgnore                     | Ignore and do not generate to spring.factories |
 | @AutoService                    | java Spi generates the configuration |
 
+| 注解                            | aot.factories                     |
+| @AotRuntimeHintsRegistrar      | RuntimeHintsRegistrar                |
+| @AotBeanRegistration           | BeanRegistrationAotProcessor                |
+| @AotBeanFactoryInitialization  | BeanFactoryInitializationAotProcessor                |
+
 ## Usage
 **Note**: If you are using `Lombok` in your project, place the mica-Auto dependency behind `Lombok`。
 
 ## version
-| version   | spring boot version |
-|-------|----------------|
-| 3.x   | 3.x            |
-| 2.3.1 | 1.x ~ 2.x      |
+| version   | spring boot version | java version |
+|-------|----------------|--------------|
+| 3.x   | 3.x            | 17           |
+| 2.3.1 | 1.x ~ 2.x      | 1.8          |
 
 
 ### maven
