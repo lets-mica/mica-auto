@@ -44,6 +44,7 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 | @AutoService                    | java Spi 生成配置               |
 
 | 注解                            | aot.factories                     |
+| ------------------------------- | ------------------------------- |
 | @AotRuntimeHintsRegistrar      | RuntimeHintsRegistrar                |
 | @AotBeanRegistration           | BeanRegistrationAotProcessor                |
 | @AotBeanFactoryInitialization  | BeanFactoryInitializationAotProcessor                |
