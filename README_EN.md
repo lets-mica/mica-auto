@@ -51,10 +51,10 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 **Note**: If you are using `Lombok` in your project, place the mica-Auto dependency behind `Lombok`。
 
 ## version
-| version   | spring boot version | java version |
-|-------|----------------|--------------|
+| version | spring boot version | java version |
+|---------|----------------|--------------|
 | 3.0.1   | 3.x            | 17           |
-| 2.3.1 | 1.x ~ 2.x      | 1.8          |
+| 2.3.2   | 1.x ~ 2.x      | 1.8          |
 
 
 ### maven

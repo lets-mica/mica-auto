@@ -56,7 +56,7 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 | version | spring boot version | java version |
 |---------|----------------|--------------|
 | 3.0.1   | 3.x            | 17           |
-| 2.3.1   | 1.x ~ 2.x      | 1.8          |
+| 2.3.2   | 1.x ~ 2.x      | 1.8          |
 
 ### maven
 ```xml
