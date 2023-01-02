@@ -53,7 +53,7 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 ## version
 | version   | spring boot version | java version |
 |-------|----------------|--------------|
-| 3.x   | 3.x            | 17           |
+| 3.0.1   | 3.x            | 17           |
 | 2.3.1 | 1.x ~ 2.x      | 1.8          |
 
 
@@ -62,7 +62,7 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>2.3.1</version>
+  <version>${version}</version>
   <scope>provided</scope>
 </dependency>
 ```

@@ -53,10 +53,10 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 `注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。
 
 ## 版本说明
-| version   | spring boot version | java version |
-|-------|----------------|--------------|
-| 3.x   | 3.x            | 17           |
-| 2.3.1 | 1.x ~ 2.x      | 1.8          |
+| version | spring boot version | java version |
+|---------|----------------|--------------|
+| 3.0.1   | 3.x            | 17           |
+| 2.3.1   | 1.x ~ 2.x      | 1.8          |
 
 ### maven
 ```xml
