@@ -62,7 +62,7 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>${version}</version>
+  <version>2.3.1</version>
   <scope>provided</scope>
 </dependency>
 ```
