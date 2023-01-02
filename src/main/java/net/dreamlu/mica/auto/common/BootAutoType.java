@@ -32,7 +32,7 @@ public enum BootAutoType {
 	/**
 	 * Component，组合注解，添加到 spring.factories
 	 */
-	COMPONENT("org.springframework.stereotype.Component", "org.springframework.boot.autoconfigure.EnableAutoConfiguration"),
+	COMPONENT(BootAutoType.COMPONENT_ANNOTATION, "org.springframework.boot.autoconfigure.EnableAutoConfiguration"),
 	/**
 	 * ApplicationContextInitializer 添加到 spring.factories
 	 */
@@ -89,5 +89,7 @@ public enum BootAutoType {
 
 	private final String annotation;
 	private final String configureKey;
+
+	public static final String COMPONENT_ANNOTATION = "org.springframework.stereotype.Component";
 
 }
