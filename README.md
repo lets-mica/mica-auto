@@ -10,6 +10,12 @@
 
 [版本更新记录](CHANGELOG.md)
 
+## 版本说明
+| version | spring boot version | java version |
+|---------|---------------------|--------------|
+| 3.0.1   | 3.x                 | 17           |
+| 2.3.2   | 1.x ~ 3.x           | 1.8          |
+
 ## 原理
 
 mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 就存在了。 Annotation Processor 是 javac 的一个工具，它用来在编译时扫描和处理注解。通过 Annotation Processor 可以获取到注解和被注解对象的相关信息，然后根据注解自动生成Java代码，省去了手动编写，提高了编码效率。大名鼎鼎的 Lombok 也是采用的该技术。
@@ -51,12 +57,6 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 
 ## 使用
 `注意：` 如果你项目中使用了 `Lombok` 请将 `mica-auto` 的依赖放置到 `Lombok` 后面。
-
-## 版本说明
-| version | spring boot version | java version |
-|---------|----------------|--------------|
-| 3.0.1   | 3.x            | 17           |
-| 2.3.2   | 1.x ~ 2.x      | 1.8          |
 
 ### maven
 ```xml
