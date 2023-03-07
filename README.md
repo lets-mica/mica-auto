@@ -91,7 +91,7 @@ compileOnly "net.dreamlu:mica-auto:${version}"
 
 ## 赞助商
 
-[![业界领先的单点登录](docs/img/maxkey.png)](http://www.maxkey.top/?from=mica-auto)
+[![业界领先的单点登录](docs/img/maxkey.png)](https://gitee.com/dromara/MaxKey/?from=mica-auto)
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）
