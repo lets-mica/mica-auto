@@ -89,6 +89,10 @@ compileOnly "net.dreamlu:mica-auto:${version}"
 - mica-mqtt（基于 t-io 实现的 mqtt组件）：https://gitee.com/596392912/mica-mqtt
 - Spring cloud 微服务 http2 方案（h2c）: https://gitee.com/596392912/spring-cloud-java11
 
+## 赞助商
+
+[![业界领先的单点登录](docs/img/maxkey.png)](http://www.maxkey.top/?from=mica-auto)
+
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）
 
