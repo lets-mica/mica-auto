@@ -13,7 +13,7 @@ English | [简体中文](README.md)
 ## version
 | version | spring boot version | java version |
 |---------|---------------------|--------------|
-| 3.0.1   | 3.x                 | 17           |
+| 3.1.1   | 3.x                 | 17           |
 | 2.3.2   | 1.x ~ 3.x           | 1.8          |
 
 ## Principle

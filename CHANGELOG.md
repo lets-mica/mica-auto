@@ -2,6 +2,9 @@
 
 ## 发行版本
 
+## [3.1.1] - 2023-01-02
+- :arrow_up: 升级到 Spring boot 3.1.1
+
 ## [3.0.1] - 2023-01-02
 - :sparkles: Spring boot 2.7.x+ spi 生成改为直接支持 `@Component`
 - :arrow_up: 升级到 Spring boot 3.0.1
