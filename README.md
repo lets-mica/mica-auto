@@ -114,4 +114,4 @@ Spring 5 - spring-context-indexer: https://github.com/spring-projects/spring-fra
 
 ![如梦技术](docs/dreamlu-weixin.jpg)
 
-精彩内容每日推荐！
+**JAVA架构日记**，精彩内容每日推荐！
