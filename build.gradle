@@ -3,11 +3,11 @@ apply from: "${rootProject.projectDir}/gradle/publish-maven.gradle"
 
 ext {
     javaVersion = JavaVersion.VERSION_1_8
-    springBootVersion = "2.7.7"
-    lombokVersion = "1.18.24"
-    googleAutoVersion = "1.0.1"
+    springBootVersion = "2.7.16"
+    lombokVersion = "1.18.30"
+    googleAutoVersion = "1.1.1"
     compileTestingVersion = '0.21.0'
-    incapVersion = "0.3"
+    inCapVersion = "1.0.0"
 }
 
 group = GROUPID
@@ -31,10 +31,10 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     compileOnly "com.google.auto.service:auto-service:$googleAutoVersion"
     annotationProcessor "com.google.auto.service:auto-service:$googleAutoVersion"
-    compileOnly "net.ltgt.gradle.incap:incap:$incapVersion"
-    annotationProcessor "net.ltgt.gradle.incap:incap-processor:$incapVersion"
+    compileOnly "net.ltgt.gradle.incap:incap:$inCapVersion"
+    annotationProcessor "net.ltgt.gradle.incap:incap-processor:$inCapVersion"
     testImplementation "com.google.testing.compile:compile-testing:$compileTestingVersion"
-    testImplementation "net.ltgt.gradle.incap:incap:$incapVersion"
+    testImplementation "net.ltgt.gradle.incap:incap:$inCapVersion"
 }
 
 repositories {
