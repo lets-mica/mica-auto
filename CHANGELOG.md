@@ -1,6 +1,15 @@
 # 变更记录
 
 ## 发行版本
+
+## [2.3.3] - 2023-10-15
+- :sparkles: 支持 Kotlin 元注解，github #8 感谢 `@Sunrise66` 反馈
+- :arrow_up: 升级到 Spring boot 2.7.16
+
+## [2.3.2] - 2023-01-02
+- :sparkles: Spring boot 2.7.x+ spi 生成改为直接支持 `@Component`
+- :arrow_up: 升级到 Spring boot 2.7.7
+
 ## [2.3.1] - 2022-06-02
 - :sparkles: 支持生成的 Spring boot 2.7.0 向下兼容。感谢 `@冷冷` 提出的需求。
 
