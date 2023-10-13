@@ -97,8 +97,9 @@ public abstract class AbstractMicaProcessor extends AbstractProcessor {
 			}
 			// 处理组合注解
 			Element element = annotation.getAnnotationType().asElement();
-			// 如果是 java 元注解，继续循环
-			if (element.toString().startsWith("java.lang")) {
+			String elementStr = element.toString();
+			// 如果是 java 或 kotlin 元注解，继续循环
+			if (elementStr.startsWith("java.lang") || elementStr.endsWith("kotlin.")) {
 				continue;
 			}
 			// 递归处理 组合注解
