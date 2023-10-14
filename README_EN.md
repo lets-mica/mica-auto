@@ -49,19 +49,19 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>2.3.2</version>
+  <version>${mica-auto.version}</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
-```gradle
-annotationProcessor("net.dreamlu:mica-auto:2.3.2")
+```groovy
+annotationProcessor("net.dreamlu:mica-auto:$micaAutoVersion}")
 ```
 
 ### gradle < 5.x
-```gradle
-compileOnly "net.dreamlu:mica-auto:2.3.2"
+```groovy
+compileOnly "net.dreamlu:mica-auto:$micaAutoVersion"
 ```
 
 ## Principle
