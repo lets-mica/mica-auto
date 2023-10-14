@@ -14,7 +14,7 @@ English | [简体中文](README.md)
 | version | spring boot version | java version |
 |---------|---------------------|--------------|
 | 3.1.1   | 3.x                 | 17           |
-| 2.3.2   | 1.x ~ 3.x           | 1.8          |
+| 2.3.3   | 1.x ~ 3.x           | 1.8          |
 
 ## Principle
 Mica Auto uses the Annotation Processor, which is not a new technology. It's been around since JDK 1.6. The Annotation Processor is a tool of javac that scans and processes annotations at compile time. Using the Annotation Processor, you can obtain information about annotations and annotated objects, and then automatically generate Java code based on annotations, eliminating manual writing and improving coding efficiency. Lombok is also famous for this technology.
@@ -61,19 +61,19 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>${version}</version>
+  <version>${mica-auto.version}</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
-```gradle
-annotationProcessor("net.dreamlu:mica-auto:${version}")
+```groovy
+annotationProcessor("net.dreamlu:mica-auto:$micaAutoVersion}")
 ```
 
 ### gradle < 5.x
 ```gradle
-compileOnly "net.dreamlu:mica-auto:${version}"
+compileOnly "net.dreamlu:mica-auto:2.3.2"
 ```
 
 ## Principle

@@ -14,7 +14,7 @@
 | version | spring boot version | java version |
 |---------|---------------------|--------------|
 | 3.1.1   | 3.x                 | 17           |
-| 2.3.2   | 1.x ~ 3.x           | 1.8          |
+| 2.3.3   | 1.x ~ 3.x           | 1.8          |
 
 ## 原理
 
@@ -63,19 +63,19 @@ mica auto 采用 Annotation Processor，她不是什么新技术，在 jdk 1.6 �
 <dependency>
   <groupId>net.dreamlu</groupId>
   <artifactId>mica-auto</artifactId>
-  <version>${version}</version>
+  <version>${mica-auto.version}</version>
   <scope>provided</scope>
 </dependency>
 ```
 
 ### gradle >= 5.x
 ```groovy
-annotationProcessor("net.dreamlu:mica-auto:${version}")
+annotationProcessor("net.dreamlu:mica-auto:$micaAutoVersion}")
 ```
 
 ### gradle < 5.x
 ```groovy
-compileOnly "net.dreamlu:mica-auto:${version}"
+compileOnly "net.dreamlu:mica-auto:$micaAutoVersion"
 ```
 
 ## 原理
