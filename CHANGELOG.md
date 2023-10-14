@@ -2,6 +2,10 @@
 
 ## 发行版本
 
+## [3.1.2] - 2023-10-15
+- :sparkles: 支持 Kotlin 元注解，github #8 感谢 `@Sunrise66` 反馈
+- :arrow_up: 升级到 Spring boot 3.1.4
+
 ## [3.1.1] - 2023-01-02
 - :arrow_up: 升级到 Spring boot 3.1.1
 
