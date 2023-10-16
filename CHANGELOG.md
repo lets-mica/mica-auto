@@ -18,6 +18,10 @@
 - :arrow_up: 升级到 Spring boot 3.0.0
 - :arrow_up: 升级到 java17
 
+## [2.3.3] - 2023-10-15
+- :sparkles: 支持 Kotlin 元注解，github #8 感谢 `@Sunrise66` 反馈
+- :arrow_up: 升级到 Spring boot 2.7.16
+
 ## [2.3.2] - 2023-01-02
 - :sparkles: Spring boot 2.7.x+ spi 生成改为直接支持 `@Component`
 - :arrow_up: 升级到 Spring boot 2.7.7
