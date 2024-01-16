@@ -2,6 +2,10 @@
 
 ## 发行版本
 
+## [3.1.3] - 2024-01-16
+- :sparkles: 支持 Kotlin Spring boot starter。
+- :arrow_up: 升级到 Spring boot 3.2.1
+
 ## [3.1.2] - 2023-10-15
 - :sparkles: 支持 Kotlin 元注解，github #8 感谢 `@Sunrise66` 反馈
 - :arrow_up: 升级到 Spring boot 3.1.4
@@ -17,6 +21,10 @@
 - :sparkles: 支持 Spring boot 3.0.0 aot native 
 - :arrow_up: 升级到 Spring boot 3.0.0
 - :arrow_up: 升级到 java17
+
+## [2.3.4] - 2024-01-16
+- :sparkles: 支持 Kotlin Spring boot starter。
+- :arrow_up: 升级到 Spring boot 2.7.18
 
 ## [2.3.3] - 2023-10-15
 - :sparkles: 支持 Kotlin 元注解，github #8 感谢 `@Sunrise66` 反馈

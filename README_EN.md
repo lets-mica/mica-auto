@@ -13,8 +13,8 @@ English | [简体中文](README.md)
 ## version
 | version | spring boot version | java version |
 |---------|---------------------|--------------|
-| 3.1.2   | 3.x                 | 17           |
-| 2.3.3   | 1.x ~ 3.x           | 1.8          |
+| 3.1.3   | 3.x                 | 17           |
+| 2.3.4   | 1.x ~ 3.x           | 1.8          |
 
 ## Principle
 Mica Auto uses the Annotation Processor, which is not a new technology. It's been around since JDK 1.6. The Annotation Processor is a tool of javac that scans and processes annotations at compile time. Using the Annotation Processor, you can obtain information about annotations and annotated objects, and then automatically generate Java code based on annotations, eliminating manual writing and improving coding efficiency. Lombok is also famous for this technology.
