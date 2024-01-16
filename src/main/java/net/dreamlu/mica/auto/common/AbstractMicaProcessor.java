@@ -99,7 +99,7 @@ public abstract class AbstractMicaProcessor extends AbstractProcessor {
 			Element element = annotation.getAnnotationType().asElement();
 			String elementStr = element.toString();
 			// 如果是 java 或 kotlin 元注解，继续循环
-			if (elementStr.startsWith("java.lang") || elementStr.endsWith("kotlin.")) {
+			if (elementStr.startsWith("java.lang") || elementStr.startsWith("kotlin.")) {
 				continue;
 			}
 			// 递归处理 组合注解
@@ -125,8 +125,9 @@ public abstract class AbstractMicaProcessor extends AbstractProcessor {
 			}
 			// 处理组合注解
 			Element element = annotation.getAnnotationType().asElement();
+			String elementStr = element.toString();
 			// 如果是 java 元注解，继续循环
-			if (element.toString().startsWith("java.lang")) {
+			if (elementStr.startsWith("java.lang") || elementStr.startsWith("kotlin.")) {
 				continue;
 			}
 			// 递归处理 组合注解
