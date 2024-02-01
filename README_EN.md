@@ -47,7 +47,7 @@ It is mainly used to avoid the inconsistency between the Spring Boot main projec
 | @AutoIgnore                     | Ignore and do not generate to spring.factories |
 | @AutoService                    | java Spi generates the configuration |
 
-| 注解                            | aot.factories                     |
+| Annotation                      | aot.factories                     |
 | ------------------------------- | ------------------------------- |
 | @AotRuntimeHintsRegistrar      | RuntimeHintsRegistrar                |
 | @AotBeanRegistration           | BeanRegistrationAotProcessor                |
