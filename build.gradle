@@ -1,19 +1,23 @@
-apply plugin: "java-library"
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.24' apply false
+}
 apply from: "${rootProject.projectDir}/gradle/publish-maven.gradle"
 
 ext {
     javaVersion = JavaVersion.VERSION_1_8
     springBootVersion = "2.7.18"
-    lombokVersion = "1.18.30"
+    lombokVersion = "1.18.32"
     googleAutoVersion = "1.1.1"
     compileTestingVersion = '0.21.0'
     inCapVersion = "1.0.0"
+    kotlinVersion = "1.9.24"
 }
 
 group = GROUPID
 version = VERSION
 
-allprojects {
+projects {
     apply plugin: 'java'
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
@@ -27,6 +31,7 @@ tasks.withType(JavaCompile) {
 dependencies {
     api "org.springframework.boot:spring-boot-configuration-processor:$springBootVersion"
     api "org.springframework.boot:spring-boot-autoconfigure-processor:$springBootVersion"
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.24-1.0.20")
     compileOnly "org.projectlombok:lombok:$lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     compileOnly "com.google.auto.service:auto-service:$googleAutoVersion"
@@ -35,6 +40,12 @@ dependencies {
     annotationProcessor "net.ltgt.gradle.incap:incap-processor:$inCapVersion"
     testImplementation "com.google.testing.compile:compile-testing:$compileTestingVersion"
     testImplementation "net.ltgt.gradle.incap:incap:$inCapVersion"
+    testImplementation 'dev.zacsweers.kctfork:ksp:0.4.1'
+    testImplementation "org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlinVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-scripting-compiler:$kotlinVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-scripting-compiler-impl:$kotlinVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-scripting-common:$kotlinVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-scripting-jvm:$kotlinVersion"
 }
 
 repositories {

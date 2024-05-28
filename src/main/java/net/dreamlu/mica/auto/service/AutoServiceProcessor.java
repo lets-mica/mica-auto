@@ -48,7 +48,7 @@ public class AutoServiceProcessor extends AbstractMicaProcessor {
 	/**
 	 * AutoService 注解名
 	 */
-	private static final String AUTO_SERVICE_NAME = net.dreamlu.mica.auto.annotation.AutoService.class.getName();
+	public static final String AUTO_SERVICE_NAME = net.dreamlu.mica.auto.annotation.AutoService.class.getName();
 	/**
 	 * spi 服务集合，key 接口 -> value 实现列表
 	 */
