@@ -23,10 +23,7 @@ import javax.tools.FileObject;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A helper class for reading and writing Services files.
@@ -77,7 +74,9 @@ class ServicesFiles {
 	 */
 	protected static void writeServiceFile(Collection<String> services, OutputStream output) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output, UTF_8));
-		for (String service : services) {
+		List<String> serviceList = new ArrayList<>(services);
+		Collections.sort(serviceList);
+		for (String service : serviceList) {
 			writer.write(service);
 			writer.newLine();
 		}

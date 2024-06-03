@@ -111,7 +111,9 @@ class FactoriesFiles {
 			writer.write(key);
 			writer.write("=\\\n  ");
 			StringJoiner joiner = new StringJoiner(",\\\n  ");
-			for (String value : values) {
+			List<String> valueList = new ArrayList<>(values);
+			Collections.sort(valueList);
+			for (String value : valueList) {
 				joiner.add(value);
 			}
 			writer.write(joiner.toString());
@@ -147,7 +149,9 @@ class FactoriesFiles {
 	protected static void writeAutoConfigurationImportsFile(Set<String> allAutoConfigurationImports, OutputStream output) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output, UTF_8));
 		StringJoiner joiner = new StringJoiner("\n");
-		for (String configurationImport : allAutoConfigurationImports) {
+		List<String> configurationImportList = new ArrayList<>(allAutoConfigurationImports);
+		Collections.sort(configurationImportList);
+		for (String configurationImport : configurationImportList) {
 			joiner.add(configurationImport);
 		}
 		writer.write(joiner.toString());
