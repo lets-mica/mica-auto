@@ -21,9 +21,9 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Setup Gradle 8.5
+      - name: Setup Gradle 8.8
         uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: 8.5
+          gradle-version: 8.8
       - name: Build with Gradle
         run: gradle build
