@@ -6,9 +6,11 @@
 
 `mica-auto` 是 `Spring cloud` 微服务框架 `Mica` 中的一个基础组件，用来生成 `Spring boot starter` 的一些基础配置。 
 
-简体中文 | [English](README_EN.md) 
+[✨✨✨推广：**BladeX 物联网平台**✨✨✨iot.bladex.cn](https://iot.bladex.cn?from=mica-mqtt)
 
-[版本更新记录](CHANGELOG.md)
+------
+
+简体中文 | [English](README_EN.md) | [版本更新记录](CHANGELOG.md)
 
 ## 版本说明
 | version | spring boot version | java version |
@@ -88,10 +90,6 @@ compileOnly "net.dreamlu:mica-auto:$micaAutoVersion"
 - mica-weixin（jfinal weixin 的 spring boot starter）：https://gitee.com/596392912/mica-weixin
 - mica-mqtt（基于 t-io 实现的 mqtt组件）：https://gitee.com/596392912/mica-mqtt
 - Spring cloud 微服务 http2 方案（h2c）: https://gitee.com/596392912/spring-cloud-java11
-
-## 赞助商
-
-[![业界领先的单点登录](docs/img/maxkey.png)](https://gitee.com/dromara/MaxKey/?from=mica-auto)
 
 ## 开源协议
 LGPL（[GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl.html)）
