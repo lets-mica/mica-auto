@@ -2,6 +2,10 @@
 
 ## 发行版本
 
+## [3.1.5] - 2024-01-16
+- :sparkles: 从 Gradle 构建迁移到 Maven
+- :arrow_up: 升级到 Spring boot 3.5.5
+
 ## [3.1.3] - 2024-01-16
 - :sparkles: 支持 Kotlin Spring boot starter。
 - :arrow_up: 升级到 Spring boot 3.2.1
