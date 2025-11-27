@@ -48,7 +48,7 @@ public enum BootAutoType {
 	/**
 	 * EnvironmentPostProcessor 添加到 spring.factories
 	 */
-	ENV_POST_PROCESSOR(AutoEnvPostProcessor.class.getName(), "org.springframework.boot.env.EnvironmentPostProcessor"),
+	ENV_POST_PROCESSOR(AutoEnvPostProcessor.class.getName(), "org.springframework.boot.EnvironmentPostProcessor"),
 	/**
 	 * FailureAnalyzer 添加到 spring.factories
 	 */
