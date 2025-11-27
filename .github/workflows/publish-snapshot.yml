@@ -17,8 +17,8 @@ jobs:
       - name: Extract Maven version
         id: check
         run: |
-          # 提取 <revision> 标签中的内容（版本在根项目的 pom.xml 中）
-          VERSION=$(sed -n 's/<revision>\(.*\)<\/revision>/\1/p' pom.xml | tr -d ' ')
+          # 提取项目 <version> 标签中的内容（在 <artifactId>mica-auto</artifactId> 之后的第一个 version）
+          VERSION=$(sed -n '/<artifactId>mica-auto<\/artifactId>/,/<version>/{s/.*<version>\(.*\)<\/version>.*/\1/p}' pom.xml | head -1 | tr -d ' ')
           echo "Extracted version: $VERSION"
           # 检查是否为 SNAPSHOT
           if [[ "$VERSION" == *"SNAPSHOT"* ]]; then
