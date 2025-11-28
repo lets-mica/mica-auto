@@ -2,6 +2,9 @@
 
 ## 发行版本
 
+## [4.0.0] - 2025-11-27
+- :sparkles: 支持 Spring boot 4.0.0
+
 ## [3.1.5] - 2024-01-16
 - :sparkles: 从 Gradle 构建迁移到 Maven
 - :arrow_up: 升级到 Spring boot 3.5.5
