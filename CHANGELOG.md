@@ -2,8 +2,14 @@
 
 ## 发行版本
 
+## [4.0.1] - 2025-11-28
+- fix(deps): 移除 spring-boot-configuration-processor 和 spring-boot-autoconfigure-processor 依赖的 optional 标记
+
 ## [4.0.0] - 2025-11-27
 - :sparkles: 支持 Spring boot 4.0.0
+
+## [3.1.6] - 2025-11-28
+- fix(deps): 移除 spring-boot-configuration-processor 和 spring-boot-autoconfigure-processor 依赖的 optional 标记
 
 ## [3.1.5] - 2024-01-16
 - :sparkles: 从 Gradle 构建迁移到 Maven
